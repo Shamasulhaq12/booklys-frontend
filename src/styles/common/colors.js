@@ -1,0 +1,42 @@
+const colors = {
+  primary: '#0e3ad7',
+  contrastText: '#ffffff',
+  secondary: '#e7e2e2',
+  dark: '#6A7383',
+  darker: '#000000',
+  muted: '#999999',
+  border: '#CCCCCC',
+  disabled: '#f2f4f7',
+  primaryHover: '#641415',
+  success: '#32C850',
+  error: '#ff4861',
+  pending: '#FAC751',
+  grey: '#f0f0f0',
+  paleOrange: '#FFF2D0',
+  purple: '#702963',
+  statusOnline: '#50CD89',
+  statusOffline: '#989a96',
+  parrotGreen: '#2ECC71',
+};
+
+export const {
+  primary,
+  muted,
+  secondary,
+  dark,
+  border,
+  disabled,
+  success,
+  error,
+  grey,
+  darker,
+  contrastText,
+  paleOrange,
+  purple,
+  pending,
+  statusOnline,
+  statusOffline,
+  parrotGreen,
+} = colors;
+
+export default colors;
