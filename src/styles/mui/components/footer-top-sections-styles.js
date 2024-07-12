@@ -1,4 +1,4 @@
-import { grey, primary } from '@/styles/common/colors';
+import { primary, skin } from '@/styles/common/colors';
 
 export const footerImageStyles = {
   width: '100%',
@@ -7,7 +7,7 @@ export const footerImageStyles = {
 };
 
 export const footerContainerStyles = {
-  background: grey,
+  background: skin,
   color: '#000000',
   '& .footer-link-item': {
     fontWeight: 500,

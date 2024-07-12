@@ -35,11 +35,9 @@ function FormikDropZone({ name, onChange = () => {}, src = '', multiple = false 
 
   // HANDLERS
   const handleDropFiles = files => {
-    const transformedFiles = files?.map(item =>
-      Object.assign(item, {
-        preview: URL.createObjectURL(item),
-      })
-    );
+    const transformedFiles = files?.map(item => Object.assign(item, {
+      preview: URL.createObjectURL(item),
+    }));
 
     if (multiple) {
       setValue(transformedFiles);

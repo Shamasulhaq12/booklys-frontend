@@ -88,7 +88,7 @@ function CommonFilterForm({
         <Form className=" w-full flex justify-center">
           <Grid className="w-full max-h-14 overflow-hidden" justifyContent="center" alignItems="center" container>
             {/* SEARCH  */}
-            <Grid item xs={5}>
+            <Grid item xs={5.375}>
               <FormikSearchInput
                 className="rounded-s-full h-14"
                 onChange={newValue => handleSearch(newValue, resetForm)}
@@ -98,7 +98,7 @@ function CommonFilterForm({
             </Grid>
 
             {/* CITY */}
-            <Grid item xs={5}>
+            <Grid item xs={5.375}>
               <FormikSelect
                 name="serviceCities__city__id"
                 options={[]}
@@ -109,7 +109,7 @@ function CommonFilterForm({
               />
             </Grid>
 
-            <Grid item xs={2}>
+            <Grid item xs={1.25}>
               <Button
                 className=" shadow-none h-14 w-full rounded-s-none rounded-e-full"
                 size="small"

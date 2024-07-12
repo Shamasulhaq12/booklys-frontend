@@ -1,7 +1,5 @@
 // import { colors } from '@/styles/common/colors';
 
-// const { paleOrange } = colors;
-
 export const reviewAvatarCommonStyles = {
   border: '1px solid white',
   position: 'absolute',
@@ -13,11 +11,6 @@ export const commonReviewMsgBoxStyles = {
 };
 
 export const leftReviewBoxWrapperStyles = { left: '-70px', bottom: '40%' };
-
-export const leftReviewMsgBoxStyles = {
-  ...commonReviewMsgBoxStyles,
-  background: 'paleOrange',
-};
 
 export const leftReviewAvatarStyles = { ...reviewAvatarCommonStyles, left: '-20px', bottom: '-20px' };
 

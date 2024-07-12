@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as Yup from 'yup';
 import { Box } from '@mui/material';
 import { Form, Formik } from 'formik';

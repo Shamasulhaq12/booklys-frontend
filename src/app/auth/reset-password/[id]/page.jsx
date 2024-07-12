@@ -1,34 +1,58 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
-import AuthGridWrapper from '@/app/common/components/wrappers/AuthGridWrapper';
+import Link from 'next/link';
+import Image from 'next/image';
+import backgroundImage from '@/assets/auth-banner3.jpg';
+import logo from '@/assets/Booklyz.svg';
 import { primary } from '@/styles/common/colors';
 import ResetPasswordForm from './components/ResetPasswordForm';
 
 function ResetPassword({ params: { id } }) {
   return (
-    <AuthGridWrapper heading="We're excited to see how you work!">
-      <Box sx={{ padding: '40px 60px', minWidth: '600px', maxWidth: '650px' }}>
-        <Box sx={{ padding: '10px' }} className="mb-lg-4 mb-md-3">
-          <Typography variant="h4" sx={{ color: primary }} className="mb-1 text-center font-bold ">
-            Create New Password
-          </Typography>
+    <Box
+      className=" flex justify-center items-center"
+      sx={{
+        backgroundImage: `url(${backgroundImage.src})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPositionY: '-100px',
+        backgroundColor: '#e9e9e7',
+        minHeight: '100vh',
+        position: 'relative',
+      }}
+    >
+      <Box
+        sx={{ paddingBottom: '60px' }}
+        className=" relative bg-white h-full rounded-2xl flex justify-center"
+      >
+        <Box sx={{ paddingX: '60px', maxWidth: '650px' }}>
+          <Box className="w-full flex justify-center">
+            <Link href="/">
+              <Image src={logo} alt="Logo" height={150} width={150} />
+            </Link>
+          </Box>
+          <Box sx={{ padding: '10px' }} className="mb-lg-4 mb-md-3">
+            <Typography variant="h5" sx={{ color: primary }} className="mb-1 text-center font-bold ">
+              Create New Password
+            </Typography>
+          </Box>
+          <ResetPasswordForm token={id} />
         </Box>
-        <ResetPasswordForm token={id} />
+        <Typography variant="body2" color="grey" sx={{ position: 'absolute', bottom: '10px' }}>
+          Powered by{' '}
+          <a
+            href="https://beyonderissolutions.com/"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'grey', fontSize: 'inherit' }}
+          >
+            {' '}
+            Beyond Eris Solutions&#169; 2024
+          </a>
+        </Typography>
       </Box>
-      <Typography variant="body2" className="absolute" color="grey" sx={{ bottom: '5px' }}>
-        Powered by{' '}
-        <a
-          href="https://beyonderissolutions.com/"
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'grey', fontSize: 'inherit' }}
-        >
-          {' '}
-          Beyond Eris Solutions&#169; 2024
-        </a>
-      </Typography>
-    </AuthGridWrapper>
+    </Box>
   );
 }
 

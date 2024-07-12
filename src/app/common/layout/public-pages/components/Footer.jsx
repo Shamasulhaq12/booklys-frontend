@@ -110,7 +110,7 @@ function Footer({ footerText = '', footerBgColor = '', textColor = '', btnBg = '
         >
           <Grid item className="flex gap-2 items-center">
             <Typography color="GrayText" variant="body1">
-              © {currentYear} Supportify All Rights Received
+              © {currentYear} Booklyz All Rights Received
             </Typography>
           </Grid>
         </Grid>
