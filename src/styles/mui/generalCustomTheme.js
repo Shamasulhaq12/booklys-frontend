@@ -143,8 +143,8 @@ const theme = createTheme({
 
     label: {
       display: 'block',
-      fontSize: '0.9rem',
-      fontWeight: 300,
+      fontSize: '15px',
+      fontWeight: 500,
       marginBottom: '4px',
     },
 
@@ -178,6 +178,7 @@ const theme = createTheme({
       md: 768,
       lg: 992,
       xl: 1200,
+      xxl: 1390,
     },
   },
   components: {

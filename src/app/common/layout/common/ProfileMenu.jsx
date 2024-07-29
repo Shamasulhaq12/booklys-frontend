@@ -43,7 +43,7 @@ function ProfileMenu({ anchorEl, handleClose }) {
           <ListItemText>My Profile</ListItemText>
         </MenuItem>
         {(isSupplier || isClient) && (
-          <MenuItem onClick={handleClose} component={Link} className="resetLink" href={isSupplier ? '/portal/supplier' : '/portal/client'}>
+          <MenuItem onClick={handleClose} component={Link} className="resetLink" href={isSupplier ? '/portal/supplier/dashboard' : '/portal/client/dashboard'}>
             <ListItemText>Dashboard</ListItemText>
           </MenuItem>
         )}

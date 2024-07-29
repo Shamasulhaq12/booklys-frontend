@@ -3,7 +3,7 @@ import { privateAPi } from '.';
 export const authApi = privateAPi.injectEndpoints({
   endpoints: build => ({
     authorized: build.query({
-      query: () => '/api/user/me/',
+      query: () => '/user/me/',
       providesTags: ['GetAuthorizedUser'],
     }),
 

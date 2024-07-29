@@ -18,7 +18,7 @@ function useGetSidebarItems() {
     () => [
       {
         id: v4(),
-        path: `/portal/${userType}`,
+        path: `/portal/${userType}/dashboard`,
         title: 'Dashboard',
         icon: <Dashboard />,
         order: 0,

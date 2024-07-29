@@ -6,7 +6,16 @@
     z-index: 999;
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
+    width: calc(100% - 80px);
+  }
+
+.navbarContainer {
+    background: white;
+    box-shadow: 0px 2px 10px #575757a0;
+    z-index: 999;
+    position: fixed;
+    top: 0;
     right: 0;
     width: 100%;
   }

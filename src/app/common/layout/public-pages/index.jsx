@@ -1,12 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import Footer from './components/Footer';
-import Topbar from '../common/Topbar';
+import Navbar from './components/Navbar';
 
 function PublicLayoutWrapper({ children }) {
   return (
     <>
-      <Topbar />
+      <Navbar />
       {children}
       <Footer />
     </>

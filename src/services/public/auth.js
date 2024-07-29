@@ -17,7 +17,7 @@ export const authApi = publicApi.injectEndpoints({
           password: body?.password,
         };
         return {
-          url: '/api/user/register/',
+          url: '/user/register/',
           method: 'POST',
           body: payload,
         };
@@ -25,20 +25,20 @@ export const authApi = publicApi.injectEndpoints({
     }),
     login: build.mutation({
       query: body => ({
-        url: '/api/user/login/',
+        url: '/user/login/',
         method: 'POST',
         body,
       }),
     }),
     forgotPassword: build.mutation({
-      query: body => ({ url: '/api/user/forget/password/', method: 'POST', body }),
+      query: body => ({ url: '/user/forget/password/', method: 'POST', body }),
     }),
     verifyToken: build.mutation({
-      query: id => ({ url: `/api/user/account/activation/${id}`, method: 'POST' }),
+      query: id => ({ url: `/user/account/activation/${id}`, method: 'POST' }),
     }),
     resetPassword: build.mutation({
       query: body => ({
-        url: '/api/user/reset/password/',
+        url: '/user/reset/password/',
         method: 'POST',
         body,
       }),

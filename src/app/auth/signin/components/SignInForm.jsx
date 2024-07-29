@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 'use client';
 
 import { Box, Grid, Typography } from '@mui/material';
@@ -8,12 +6,16 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
-import FormikField from '@/shared/components/form/login/FormikField';
-import { initialValues, validationSchema } from '../utilities/formUtils';
-import SubmitBtn from '@/app/common/components/SubmitBtn';
+
+// API & CUSTOM HOOKS
+import { onLoggedIn } from '@/store/slices/authSlice';
 import { useLoginMutation } from '@/services/public/auth';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
-import { onLoggedIn } from '@/store/slices/authSlice';
+
+// COMPONENTS & UTILITIES
+import FormikField from '@/shared/components/form/login/FormikField';
+import SubmitBtn from '@/app/common/components/SubmitBtn';
+import { initialValues, validationSchema } from '../utilities/formUtils';
 import { createTokenCookie } from '@/utilities/cookiesHelpers';
 
 function SignInForm() {
@@ -36,7 +38,7 @@ function SignInForm() {
       }}
     >
       {({ isSubmitting }) => (
-        <Form className=" flex flex-col items-center justify-center w-fullpx-6 sm:px-0">
+        <Form className=" flex flex-col items-center justify-center w-full px-6 sm:px-0">
           <Grid justifyContent="center" alignItems="center" columnSpacing={2} rowGap={2} container>
             <Grid item xs={12}>
               <FormikField type="text" name="email" placeholder="Enter your email" />
@@ -62,7 +64,7 @@ function SignInForm() {
                   className="flex mb-1"
                   sx={{ fontSize: '16px', color: 'black', fontWeight: '600' }}
                 >
-                  Don't have an account?{' '}
+                  {'Don\'t have an account?'}
                   <Link href="/auth/signup" className=" text-blue-600 mx-2 mb-0 underline">
                     Register Now!
                   </Link>

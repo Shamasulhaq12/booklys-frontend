@@ -39,6 +39,7 @@ const TextField = styled(MuiTextField)({
       '& input': {
         color: '#232329',
         background: colors.disabled,
+        // '-webkit-text-fill-color': '#232329',
       },
     },
   },

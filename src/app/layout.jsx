@@ -7,6 +7,7 @@ import '../index.scss';
 // WRAPPERS
 import LayoutWrapper from './common/components/wrappers/LayoutWrapper';
 import Providers from './common/components/wrappers/Providers';
+import { cn } from '@/lib/utils';
 
 const gibson = localFont({
   src: [
@@ -63,7 +64,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={gibson.className}>
+      <body className={cn(gibson.className)}>
         <Providers>
           <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>

@@ -15,13 +15,13 @@ import logo from '@/assets/Booklyz.svg';
 // CUSTOM HOOKS
 import useGetMenuHandlers from '@/customHooks/useGetMenuHandlers';
 import useGetUserRoles from '@/customHooks/useGetUserRoles';
-import { topbarItems } from '../utilities/data';
 import { AUTHENTICATED } from '@/utilities/constants';
-import SearchInput from './SearchInput';
-import NavLinkItem from './NavLinkItem';
-import ProfileMenu from './ProfileMenu';
+import NavLinkItem from '../../public-pages/components/NavLinkItem';
 // import CategoryMenu from './CategoryMenu';
-import Drawer from '../public-pages/components/Drawer';
+import { topbarItems } from '../../utilities/data';
+import SearchInput from '../../common/SearchInput';
+import ProfileMenu from '../../common/ProfileMenu';
+import Drawer from '../../public-pages/components/Drawer';
 
 // COMPONENTS & UTILITIES
 
@@ -63,14 +63,6 @@ function Topbar({ toggleSidebar = () => {}, isPortal = false }) {
 
   return (
     <Box className={styles.topbarContainer}>
-      {!isAuthenticated && profileCompleted && (
-        <Box className={`${styles.navAlertColor} text-center py-3 px-3`}>
-          <Typography variant="body2" className=" text-white font-semibold">
-            Your account has been verified!{' '}
-            <Link href="/portal/client/profile-setting">Please complete your profile.</Link>
-          </Typography>
-        </Box>
-      )}
       <Box className={`flex items-center justify-between ${styles.topbar}`}>
         <Box className=" flex items-center gap-1 sm:gap-3">
           {isPortal && (
@@ -83,36 +75,15 @@ function Topbar({ toggleSidebar = () => {}, isPortal = false }) {
             <Box component={Link} href="/">
               <Image src={logo.src} alt="Logo" width={70} height={70} />
             </Box>
-            {userType !== 'supplier' && (
-              <Box className="hidden sm:hidden md:hidden lg:block">
-                <SearchInput />
-              </Box>
-            )}
           </Stack>
         </Box>
 
         <Box className=" flex items-center gap-2">
-          <Box className=" hidden xl:flex flex-grow items-center gap-1">
-            {modified?.map(item => (
-              <NavLinkItem
-                label={item.title}
-                menu={item?.menu}
-                toggle={handleOpenCategoryMenu}
-                path={item.path}
-                key={item.path}
-              />
-            ))}
+          <Box className="hidden sm:hidden md:hidden lg:block">
+            <SearchInput />
           </Box>
           {isAuthenticated ? (
             <Box className="flex items-center gap-3">
-              <Button
-                onClick={handleUserTypeChange}
-                color="primary"
-                variant="outlined"
-                className="normal-case px-2 py-1 ms-1"
-              >
-                {type === 'supplier' ? 'View as Client' : 'View as Supplier'}
-              </Button>
               {/* <Notifications /> */}
               <Box onClick={handleOpenMenu} className="flex items-center gap-2 cursor-pointer">
                 <span className=" relative">

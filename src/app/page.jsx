@@ -17,7 +17,7 @@ function Home() {
       <Box className=" mt-12">
         <Typography variant="h4">Book beauty</Typography>
         <Typography variant="h6" fontWeight={500} className="mt-4">
-          Swedens salons and facilities within beauty, exercise & health. Book an appointment easily around
+          {'Sweden\'s'} salons and facilities within beauty, exercise & health. Book an appointment easily around
           the clock with more than 20,000 hairdressers, dermatologists, masseurs, nail therapists and much
           more.
         </Typography>

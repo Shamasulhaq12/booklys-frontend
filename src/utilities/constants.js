@@ -1,7 +1,7 @@
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // ROLES
-export const SUPPLIER = 'supplier';
+export const SUPPLIER = 'owner';
 export const CLIENT = 'client';
 export const AUTHENTICATED = 'authenticated';
 export const ADMIN = 'admin';

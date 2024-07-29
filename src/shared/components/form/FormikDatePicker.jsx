@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback, useEffect, useState } from 'react';
 import { Grid, Typography, useMediaQuery } from '@mui/material';
 import { useField } from 'formik';
@@ -7,10 +9,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-// COMPONENTS
-import TextField from '@/app/common/components/styled/TextField';
 // STYLES
 import styles from '@/styles/components/inputField.module.scss';
+
+// COMPONENTS
+import TextField from '@/app/common/components/styled/TextField';
 
 function FormikDatePicker({
   onChange,
@@ -26,7 +29,7 @@ function FormikDatePicker({
 }) {
   const isLargeScreen = useMediaQuery(theme => theme.breakpoints.up('md'));
   const [field, meta, helpers] = useField(name || '');
-  const { setValue } = helpers;
+  const { setValue, setTouched } = helpers;
   const { value } = field;
   const { error, touched } = meta;
 
@@ -73,9 +76,16 @@ function FormikDatePicker({
           <DatePicker
             name={name}
             value={innerValue}
+            className="w-full"
             onChange={handleChange}
             disabled={disabled}
             placeholder={placeholder}
+            onClose={() => {
+              setTimeout(() => {
+                // to avoid error before value being set.
+                setTouched(true);
+              }, 150);
+            }}
             disablePast={disablePast}
             disableFuture={disableFuture}
             shouldDisableDate={date => {
@@ -90,7 +100,7 @@ function FormikDatePicker({
               return !!newDate;
             }}
             desktopModeMediaQuery={isLargeScreen ? '@media (pointer: fine)' : '@media (pointer: coarse)'}
-            renderInput={params => <TextField {...params} />}
+            renderInput={params => <TextField {...params} onBlur={() => setTouched(true)} />}
           />
         </LocalizationProvider>
 

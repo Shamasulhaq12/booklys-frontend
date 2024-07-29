@@ -8,36 +8,44 @@ import { CLIENT, SUPPLIER, ADMIN, AUTHENTICATED } from '@/utilities/constants';
 export const sidebarCommonItemsData = [
   {
     id: v4(),
-    path: '/portal/supplier/services',
+    path: '/portal/client/services',
     title: 'Services',
     icon: <Handyman />,
     order: 1,
-    permissions: [SUPPLIER],
+    permissions: [CLIENT],
   },
   {
     id: v4(),
-    path: '/portal/users',
+    path: '/portal/client/users',
     title: 'Users',
     icon: <People />,
     order: 2,
     permissions: [CLIENT],
   },
-  {
-    id: v4(),
-    path: '/portal/orders',
-    title: 'Orders',
-    icon: <FormatListBulleted />,
-    order: 3,
-    permissions: [SUPPLIER, CLIENT],
-  },
-  {
-    id: v4(),
-    path: '/portal/chat',
-    title: 'Chats',
-    icon: <Chat />,
-    order: 4,
-    permissions: [SUPPLIER, CLIENT],
-  },
+  // {
+  //   id: v4(),
+  //   path: '/portal/users',
+  //   title: 'Users',
+  //   icon: <People />,
+  //   order: 2,
+  //   permissions: [CLIENT],
+  // },
+  // {
+  //   id: v4(),
+  //   path: '/portal/orders',
+  //   title: 'Orders',
+  //   icon: <FormatListBulleted />,
+  //   order: 3,
+  //   permissions: [SUPPLIER, CLIENT],
+  // },
+  // {
+  //   id: v4(),
+  //   path: '/portal/chat',
+  //   title: 'Chats',
+  //   icon: <Chat />,
+  //   order: 4,
+  //   permissions: [SUPPLIER, CLIENT],
+  // },
 ];
 
 export const sidebarAdminItemsData = [

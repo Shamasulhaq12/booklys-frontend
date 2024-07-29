@@ -1,20 +1,22 @@
 'use client';
 
-/* eslint-disable array-callback-return */
 import { Box, Grid, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import FormikField from '@/shared/components/form/login/FormikField';
-import SubmitBtn from '@/app/common/components/SubmitBtn';
-import { initialValues, validationSchema } from '../utilities/formUtils';
+
+// API & CUSTOM HOOKS
 import { useSignUpMutation } from '@/services/public/auth';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 
+// COMPONENTS
+import FormikField from '@/shared/components/form/login/FormikField';
+import SubmitBtn from '@/app/common/components/SubmitBtn';
+import { initialValues, validationSchema } from '../utilities/formUtils';
+
 function SignUpForm() {
   const router = useRouter();
-  // API HOOKS & CUSTOM HOOKS
   const [signUp, { error, isSuccess }] = useSignUpMutation();
   useHandleApiResponse(error, isSuccess, 'The account activation link has been sent to your email');
 
@@ -63,7 +65,7 @@ function SignUpForm() {
                 onChange={(_, val) => setFieldValue('user_type', val)}
               >
                 <ToggleButton size="small" value="client">Become a Client</ToggleButton>
-                <ToggleButton size="small" value="supplier">Become a Supplier</ToggleButton>
+                <ToggleButton size="small" value="owner">Become a Owner</ToggleButton>
               </ToggleButtonGroup>
             </Grid>
             <Grid item xs={12}>

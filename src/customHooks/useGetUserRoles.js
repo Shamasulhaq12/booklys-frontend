@@ -5,7 +5,7 @@ const useGetUserRoles = () => {
 
   const userType = user?.user_type;
   const isClient = user?.user_type === 'client';
-  const isSupplier = user?.user_type === 'supplier';
+  const isSupplier = user?.user_type === 'owner';
   const isAdmin = user?.user_type === 'admin';
 
   return {

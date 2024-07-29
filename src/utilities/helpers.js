@@ -126,3 +126,8 @@ export const formatChartKey = key => key
   .split('_')
   .map(word => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
+
+export function yupLowercaseValidator(value) {
+  const containsUppercase = /[A-Z]/.test(value);
+  return !containsUppercase;
+}

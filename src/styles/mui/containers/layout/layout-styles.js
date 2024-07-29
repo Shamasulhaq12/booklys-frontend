@@ -1,13 +1,13 @@
-import { disabled, primary } from '@/styles/common/colors';
+import { primary } from '@/styles/common/colors';
 
-const miniVariantWidth = '50px';
+const miniVariantWidth = '80px';
 export const getListItemBtnStyles = (isActive = false) => ({
   mx: '20px',
   justifyContent: 'center',
   alignItems: 'center',
   color: isActive ? primary : 'black',
   height: '43px',
-  background: isActive ? '#ebebeb' : 'white',
+  background: isActive ? '#ebebeb' : 'transparent',
   my: '23px',
   flexDirection: 'column',
   gap: '5px',
@@ -44,11 +44,11 @@ export const getListItemBtnStyles = (isActive = false) => ({
   '& svg': {
     width: '24px',
     height: '24px',
-    color: isActive ? primary : 'black',
-    fill: isActive ? primary : 'black',
+    color: isActive ? primary : 'white',
+    fill: isActive ? primary : 'white',
 
     '& path': {
-      fill: isActive ? primary : 'black',
+      fill: isActive ? '#001a33' : 'white',
     },
   },
 
@@ -86,14 +86,14 @@ export const getSidebarWrapperStyles = (isSidebarCollapsed, drawerWidth) => ({
   left: '0',
   top: '0',
   bottom: '0',
-  background: 'white',
+  background: '#001a33',
   overflowX: 'hidden',
   transition: '0.2s ease-in-out',
   whiteSpace: 'nowrap',
   boxShadow: '2px 0px 10px #b3b3b3',
-  height: 'calc(100vh - 60px)',
-  marginTop: '60px',
-  zIndex: 5,
+  height: '100vh',
+  // marginTop: '60px',
+  // zIndex: 0,
   '::-webkit-scrollbar': { width: '3px' },
   '::-webkit-scrollbar-thumb': { background: primary },
   width: isSidebarCollapsed ? miniVariantWidth : drawerWidth,
@@ -104,7 +104,7 @@ export const getSidebarWrapperStyles = (isSidebarCollapsed, drawerWidth) => ({
 });
 
 export const getBoxWrapperStyles = (isSidebarCollapsed, drawerWidth) => ({
-  background: disabled,
+  background: 'linear-gradient(180deg,#f5eeec 0%,#fff min(53.65%,1000px),#fff 100%)',
   minHeight: 'calc(100vh - 60px)',
   padding: '65px 25px 35px 25px',
   marginTop: '60px',

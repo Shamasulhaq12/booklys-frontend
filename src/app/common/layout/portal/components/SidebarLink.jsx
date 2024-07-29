@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, ListItemButton, Tooltip, Typography, useMediaQuery } from '@mui/material';
+import { Box, ListItemButton, Tooltip, useMediaQuery } from '@mui/material';
 import propTypes from 'prop-types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -16,7 +16,7 @@ function SidebarLink({ title, onClick = () => {}, path = undefined, icon = null,
   const [isHovering, setHovering] = useState(false);
 
   return (
-    <Tooltip title={title} placement="right" disableHoverListener={!isSmallDevice}>
+    <Tooltip title={title} placement="right">
       <Box component={isMenu ? undefined : Link} href={path} className={!isMenu && 'clear-navlink'}>
         <ListItemButton
           onClick={onClick}
@@ -29,9 +29,9 @@ function SidebarLink({ title, onClick = () => {}, path = undefined, icon = null,
               {icon}
             </Box>
 
-            <Typography variant="body1" pl={1} className="wrapText">
+            {/* <Typography variant="body1" pl={1} className="wrapText">
               {title}
-            </Typography>
+            </Typography> */}
           </Box>
           {isMenu && isHovering && !isSmallDevice && (
           <ArrowRight

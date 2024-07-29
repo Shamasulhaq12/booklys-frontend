@@ -14,12 +14,13 @@ import { formikMultiSelectStyles } from '@/styles/formik/formik-styles';
 function FormikMultiSelect({
   options,
   name,
-  label,
-  reactSelectComponents,
-  formatOptionLabel,
-  isRequired,
-  disabled,
-  isPortal,
+  label = null,
+  reactSelectComponents = {},
+  formatOptionLabel = null,
+  isRequired = false,
+  disabled = false,
+  isStack = false,
+  isPortal = false,
 }) {
   const [field, meta, helpers] = useField(name);
   const { onBlur: onFieldBlur, value: selectedValue } = field;
@@ -41,14 +42,14 @@ function FormikMultiSelect({
   return (
     <Grid container rowSpacing={label ? 1 : 0} display="flex" alignItems="center" width={1}>
       {label && (
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={isStack ? 12 : 3}>
           <Typography variant="label" className={isRequired ? 'required' : ''}>
             {label}
           </Typography>
         </Grid>
       )}
 
-      <Grid item xs={12} md={label ? 9 : 12}>
+      <Grid item xs={12} md={label ? (isStack ? 12 : 9) : 12}>
         <Select
           name={name}
           isMulti
@@ -80,16 +81,8 @@ FormikMultiSelect.propTypes = {
   formatOptionLabel: propTypes.func,
   disabled: propTypes.bool,
   isRequired: propTypes.bool,
+  isStack: propTypes.bool,
   isPortal: propTypes.bool,
-};
-
-FormikMultiSelect.defaultProps = {
-  label: null,
-  reactSelectComponents: {},
-  formatOptionLabel: null,
-  disabled: false,
-  isRequired: false,
-  isPortal: false,
 };
 
 export default FormikMultiSelect;

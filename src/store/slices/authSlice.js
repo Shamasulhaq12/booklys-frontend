@@ -18,12 +18,12 @@ const authSlice = createSlice({
     },
 
     onLoggedIn: (state, { payload }) => {
-      state.token = payload.token;
+      state.token = payload.access;
       state.isAuthenticated = true;
       state.user = payload.user;
 
-      if (payload.token) {
-        localStorage.setItem('token', payload.token);
+      if (payload.access) {
+        localStorage.setItem('token', payload.access);
       }
     },
 
