@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {
   Box,
   Checkbox,
+  IconButton,
   Paper,
   Table,
   TableBody,
@@ -17,16 +18,16 @@ import {
   Typography,
 } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import ServiceTableHead from './UsersTableHead';
+import { ArrowForwardIos } from '@mui/icons-material';
 import withTable from '@/HOC/withTable';
 import useGetUserRoles from '@/customHooks/useGetUserRoles';
 import { useGetServiceQuery } from '@/services/private/services';
 import TableLoaders from '@/app/common/loaders/TableLoaders';
 import EmptyRecordTable from '@/app/common/components/EmptyRecordTable';
-import { usersTableHeadCells } from '../utilities/data';
-import { useGetUserQuery } from '@/services/private/users';
+import { basicServiceTableHeadCells, serviceTableHeadCells } from '../utilities/data';
+import BasicServiceTableHead from './BasicServiceTableHead';
 
-function UsersTable({
+function BasicServiceTable({
   pagination,
   sorting,
   onPageChange,
@@ -42,7 +43,7 @@ function UsersTable({
   const { isSupplier } = useGetUserRoles();
   const { order, orderBy } = sorting;
   const { rowsPerPage, page } = pagination;
-  const { data, isLoading, isFetching } = useGetUserQuery({
+  const { data, isLoading, isFetching } = useGetServiceQuery({
     offset: page * rowsPerPage,
     page: page + 1,
     limit: rowsPerPage,
@@ -54,8 +55,8 @@ function UsersTable({
     <Paper sx={{ borderRadius: '10px' }} className=" p-3">
       <TableContainer>
         <Table>
-          <ServiceTableHead
-            headings={usersTableHeadCells}
+          <BasicServiceTableHead
+            headings={basicServiceTableHeadCells}
             order={order}
             orderBy={orderBy}
             onRequestSort={onRequestSort}
@@ -66,9 +67,9 @@ function UsersTable({
 
           {loading && <TableLoaders />}
 
-          {!loading && data?.results?.length > 0 && (
+          {!loading && data?.length > 0 && (
             <TableBody>
-              {data?.results?.map(item => {
+              {data?.map(item => {
                 const isItemSelected = isSelected(item?.id);
 
                 return (
@@ -76,35 +77,28 @@ function UsersTable({
                     hover
                     selected={isItemSelected}
                     className=" cursor-pointer"
-                    // onClick={() => router.push(`/portal/orders/detail/${item?.order_number}`)}
                     key={item?.id}
                   >
                     <TableCell>
-                      <Typography variant="body1">{item?.first_name}</Typography>
+                      <Typography variant="body1">{item?.name}</Typography>
                     </TableCell>
+
                     <TableCell>
-                      <Typography variant="body1">{item?.last_name}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body1">{item?.phone}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body1">{item?.designation}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body1">{item?.business}</Typography>
+                      <IconButton>
+                        <ArrowForwardIos />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 );
               })}
             </TableBody>
           )}
-          {!loading && data?.results?.length === 0 && <EmptyRecordTable colSpan={7} />}
+          {!loading && data?.length === 0 && <EmptyRecordTable colSpan={7} />}
         </Table>
 
         <TablePagination
           component={Box}
-          count={data?.results?.length || 0}
+          count={data?.length || 0}
           rowsPerPage={rowsPerPage}
           page={page}
           rowsPerPageOptions={[10, 20, 30]}
@@ -116,7 +110,7 @@ function UsersTable({
   );
 }
 
-UsersTable.propTypes = {
+BasicServiceTable.propTypes = {
   pagination: PropTypes.object.isRequired,
   sorting: PropTypes.object.isRequired,
   onPageChange: PropTypes.func.isRequired,
@@ -129,4 +123,4 @@ UsersTable.propTypes = {
   setSelected: PropTypes.func.isRequired,
 };
 
-export default withTable(UsersTable, { sortBy: 'id' });
+export default withTable(BasicServiceTable, { sortBy: 'id' });

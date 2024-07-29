@@ -13,6 +13,17 @@ export const serviceTableHeadCells = [
   },
 ];
 
+export const basicServiceTableHeadCells = [
+  {
+    id: 'name',
+    label: 'Name',
+  },
+  {
+    id: 'action',
+    label: '',
+  },
+];
+
 export const momsOptions = [
   {
     label: '25%',

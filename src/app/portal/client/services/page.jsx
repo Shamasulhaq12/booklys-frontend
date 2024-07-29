@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, Divider, Modal, Paper, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Button, Divider, Modal, Stack, Tab, Tabs, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { Add } from '@mui/icons-material';
 import AddNewButton from '@/app/common/components/AddNewButton';
@@ -39,11 +39,11 @@ function Services() {
           </Button>
         )}
       </Stack>
-      <Paper>
+      <Box>
         <Tabs className="p-3" value={activeTab} onChange={handleTabChange}>
-          <Tab wrapped label="Services" />
+          <Tab className="font-semibold " wrapped label="Services" />
 
-          <Tab wrapped label="Basic Services" />
+          <Tab className="font-semibold" wrapped label="Basic Services" />
         </Tabs>
         <TabPanel stateValue={activeTab} index={0}>
           <Box mt={1}>
@@ -63,7 +63,7 @@ function Services() {
             <AddEditBasicServicesForm />
           </Box>
         </Modal>
-      </Paper>
+      </Box>
     </>
   );
 }
