@@ -24,6 +24,7 @@ import { useGetServiceQuery } from '@/services/private/services';
 import TableLoaders from '@/app/common/loaders/TableLoaders';
 import EmptyRecordTable from '@/app/common/components/EmptyRecordTable';
 import { usersTableHeadCells } from '../utilities/data';
+import { useGetUserQuery } from '@/services/private/users';
 
 function UsersTable({
   pagination,
@@ -41,7 +42,7 @@ function UsersTable({
   const { isSupplier } = useGetUserRoles();
   const { order, orderBy } = sorting;
   const { rowsPerPage, page } = pagination;
-  const { data, isLoading, isFetching } = useGetServiceQuery({
+  const { data, isLoading, isFetching } = useGetUserQuery({
     offset: page * rowsPerPage,
     page: page + 1,
     limit: rowsPerPage,
@@ -75,21 +76,24 @@ function UsersTable({
                     hover
                     selected={isItemSelected}
                     className=" cursor-pointer"
-                    onClick={() => router.push(`/portal/orders/detail/${item?.order_number}`)}
-                    key={item?.order_number}
+                    // onClick={() => router.push(`/portal/orders/detail/${item?.order_number}`)}
+                    key={item?.id}
                   >
-                    {/* <TableCell padding="checkbox">
-                      <Checkbox color="primary" checked={isItemSelected} onClick={() => onSelectRow(item)} />
-                    </TableCell> */}
                     <TableCell>
-                      <Typography variant="body1">{`${item?.service_name.slice(0.15)}...`}</Typography>
+                      <Typography variant="body1">{item?.first_name}</Typography>
                     </TableCell>
-
-                    <TableCell>{isSupplier ? item?.client_username : item?.supplier_username}</TableCell>
-
-                    <TableCell>123</TableCell>
-
-                    <TableCell>123</TableCell>
+                    <TableCell>
+                      <Typography variant="body1">{item?.last_name}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="body1">{item?.phone}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="body1">{item?.designation}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="body1">{item?.business}</Typography>
+                    </TableCell>
                   </TableRow>
                 );
               })}

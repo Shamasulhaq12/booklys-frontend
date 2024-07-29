@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 'use client';
 
 import { Box, Button, Modal, Stack, Typography } from '@mui/material';
@@ -7,8 +9,10 @@ import UsersTable from './components/UsersTable';
 import { formModalStyles } from '@/styles/mui/common/modal-styles';
 import ModalHeader from '@/app/common/components/ModalHeader';
 import AddEditUsersModal from './components/form/AddEditUsersModal';
+import { useGetUserQuery } from '@/services/private/users';
 
 function Users() {
+  // const { data, isLoading, isFetching } = useGetUserQuery();
   const [isAddModalOpen, setAddModalOpen] = useState(false);
 
   const toggleAddModal = () => {
@@ -25,7 +29,7 @@ function Users() {
       </Stack>
       <UsersTable />
       <Modal open={isAddModalOpen} onClose={toggleAddModal}>
-        <Box sx={{ ...formModalStyles, width: '900px', height: '100vh', }}>
+        <Box sx={{ ...formModalStyles, width: '900px', height: '100vh' }}>
           <ModalHeader title="Add User" onClose={toggleAddModal} />
           <AddEditUsersModal toggleAddModal={toggleAddModal} />
         </Box>

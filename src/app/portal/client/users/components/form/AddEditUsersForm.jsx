@@ -10,7 +10,6 @@ import { KeyboardArrowDown, Remove, Settings } from '@mui/icons-material';
 import FormikField from '@/shared/components/form/FormikField';
 import FormikSelect from '@/shared/components/form/FormikSelect';
 import SubmitBtn from '@/app/common/components/SubmitBtn';
-import { servicesFormInitVals, servicesFormValSchema } from '../utilities/formUtils';
 import {
   useAddServiceMutation,
   useGetServiceByIdQuery,
@@ -20,6 +19,7 @@ import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import { border } from '@/styles/common/colors';
 import FormikTimePicker from '@/shared/components/form/FormikTimePicker';
 import FormikDropZone from '@/shared/components/form/FormikDropZone';
+import { servicesFormInitVals, servicesFormValSchema } from '../../../services/utilities/formUtils';
 
 function AddEditUsersForm({ serviceSlug }) {
   const [initValues, setInitValues] = useState(servicesFormInitVals);
