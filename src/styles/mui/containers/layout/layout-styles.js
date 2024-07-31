@@ -31,7 +31,7 @@ export const getListItemBtnStyles = (isActive = false) => ({
   '& .MuiTypography-root': {
     display: '-webkit-box',
     transition: '0.1s ease-in-out',
-    fontFamily: 'var(--font-gibson), Roboto, sans-serif',
+    fontFamily: 'var(--font-notoSans), Roboto, sans-serif',
     fontSize: '14px',
     fontWeight: 400,
     width: '100%',

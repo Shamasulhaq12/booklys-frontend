@@ -1,6 +1,7 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
-import localFont from 'next/font/local';
+import { Noto_Sans } from 'next/font/google';
 import './globals.css';
 import '../index.scss';
 
@@ -9,51 +10,11 @@ import LayoutWrapper from './common/components/wrappers/LayoutWrapper';
 import Providers from './common/components/wrappers/Providers';
 import { cn } from '@/lib/utils';
 
-const gibson = localFont({
-  src: [
-    {
-      path: '../assets/fonts/gibson-thin.otf',
-      weight: '100',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/gibson-light.otf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/gibson-regular.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/gibson-book.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/gibson-medium.otf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/gibson-semibold.otf',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/gibson-bold.otf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/gibson-heavy.otf',
-      weight: '800',
-      style: 'normal',
-    },
-  ],
+const notoSans = Noto_Sans({
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
   display: 'swap',
-  variable: '--font-gibson'
+  variable: '--font-notoSans',
 });
 
 export const metadata = {
@@ -64,7 +25,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cn(gibson.className)}>
+      <body className={cn(notoSans.className)}>
         <Providers>
           <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>

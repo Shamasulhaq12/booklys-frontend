@@ -155,6 +155,13 @@ const theme = createTheme({
       wordBreak: 'break-word',
     },
 
+    body2: {
+      display: 'block',
+      fontSize: '14px',
+      fontWeight: 400,
+      wordBreak: 'break-word',
+    },
+
     body3: {
       display: 'block',
       fontSize: '13px',
@@ -169,7 +176,7 @@ const theme = createTheme({
       marginTop: '3px',
       color: '#dc3545',
     },
-    fontFamily: 'var(--font-gibson), Roboto, sans-serif',
+    fontFamily: 'var(--font-notoSans), Roboto, sans-serif',
   },
   breakpoints: {
     values: {

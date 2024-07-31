@@ -3,7 +3,17 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import { KeyboardArrowDown, Remove, Settings } from '@mui/icons-material';
@@ -97,8 +107,13 @@ function AddEditServicesForm({ serviceSlug }) {
       >
         {({ isSubmitting, values, resetForm }) => (
           <Form className=" w-1/3">
-            <Stack direction="column" gap="24px" className=" p-8 rounded-2xl border border-slate-900">
-              <Stack direction="row" justifyContent="space-between" alignItems="center">
+
+            <Accordion className=" p-8 rounded-2xl border border-slate-900">
+              <AccordionSummary
+                expandIcon={<KeyboardArrowDown />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
                 <Stack direction="row" justifyContent="center" alignItems="center" gap={3}>
                   <Settings />
                   <Box>
@@ -108,20 +123,21 @@ function AddEditServicesForm({ serviceSlug }) {
                     <Typography variant="subHead">Name, Price, time, and Category</Typography>
                   </Box>
                 </Stack>
-                <KeyboardArrowDown />
-              </Stack>
-              <FormikField
-                name="name"
-                label="Service Title"
-                isRequired
-                type="text"
-                placeholder="Service Title"
-                isStack
-              />
+              </AccordionSummary>
+              <AccordionDetails>
+                <Stack direction="column" gap="24px">
+                  <FormikField
+                    name="name"
+                    label="Service Title"
+                    isRequired
+                    type="text"
+                    placeholder="Service Title"
+                    isStack
+                  />
 
-              <Divider sx={{ borderColor: border }} className="my-3" />
+                  <Divider sx={{ borderColor: border }} className="my-3" />
 
-              {/* <FormikSelect
+                  {/* <FormikSelect
                     name="category"
                     label="Category"
                     options={categoriesOptions}
@@ -132,64 +148,73 @@ function AddEditServicesForm({ serviceSlug }) {
                     isPortal
                   /> */}
 
-              <FormikField
-                label="Description"
-                placeholder="Enter description..."
-                name="description"
-                type="textarea"
-                rows={16}
-                isRequired
-                isStack
-              />
+                  <FormikField
+                    label="Description"
+                    placeholder="Enter description..."
+                    name="description"
+                    type="textarea"
+                    rows={16}
+                    isRequired
+                    isStack
+                  />
 
-              <Divider sx={{ borderColor: border }} className="my-3" />
+                  <Divider sx={{ borderColor: border }} className="my-3" />
 
-              <FormikSelect
-                name="category"
-                label="Category"
-                // options={categoriesOptions}
-                options={[]}
-                placeholder="Select"
-                // onChange={newValue => handleChange(newValue)}
-                isRequired
-                isStack
-                isPortal
-              />
+                  <FormikSelect
+                    name="category"
+                    label="Category"
+                    // options={categoriesOptions}
+                    options={[]}
+                    placeholder="Select"
+                    // onChange={newValue => handleChange(newValue)}
+                    isRequired
+                    isStack
+                    isPortal
+                  />
 
-              <Divider sx={{ borderColor: border }} className="my-3" />
+                  <Divider sx={{ borderColor: border }} className="my-3" />
 
-              <FormikField name="price" label="Price" type="number" placeholder="Price" isRequired isStack />
+                  <FormikField
+                    name="price"
+                    label="Price"
+                    type="number"
+                    placeholder="Price"
+                    isRequired
+                    isStack
+                  />
 
-              <Divider sx={{ borderColor: border }} className="my-3" />
+                  <Divider sx={{ borderColor: border }} className="my-3" />
 
-              <Stack direction="row" justifyContent="space-between" alignItems="end" gap={1}>
-                <FormikTimePicker
-                  label="Availability Start Time"
-                  name="availability_start_time"
-                  isRequired
-                  isStack
-                />
-                <Remove color="disabled" className="mb-2" />
-                <FormikTimePicker
-                  label="Availability End Time"
-                  name="availability_end_time"
-                  isRequired
-                  isStack
-                />
-              </Stack>
+                  <Stack direction="row" justifyContent="space-between" alignItems="end" gap={1}>
+                    <FormikTimePicker
+                      label="Availability Start Time"
+                      name="availability_start_time"
+                      isRequired
+                      isStack
+                    />
+                    <Remove color="disabled" className="mb-2" />
+                    <FormikTimePicker
+                      label="Availability End Time"
+                      name="availability_end_time"
+                      isRequired
+                      isStack
+                    />
+                  </Stack>
 
-              <Divider sx={{ borderColor: border }} className="my-3" />
+                  <Divider sx={{ borderColor: border }} className="my-3" />
 
-              <Box>
-                <Typography variant="label">Add Image</Typography>
+                  <Box>
+                    <Typography variant="label">Add Image</Typography>
 
-                <FormikDropZone
-                  src={typeof values?.image === 'string' ? values?.image : ''}
-                  label="Image"
-                  name="image"
-                />
-              </Box>
-            </Stack>
+                    <FormikDropZone
+                      src={typeof values?.image === 'string' ? values?.image : ''}
+                      label="Image"
+                      name="image"
+                    />
+                  </Box>
+                </Stack>
+              </AccordionDetails>
+            </Accordion>
 
             <Stack direction="column" gap="24px" className=" mt-8 p-8 rounded-2xl border border-slate-900">
               <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -204,7 +229,6 @@ function AddEditServicesForm({ serviceSlug }) {
                 </Stack>
                 <KeyboardArrowDown />
               </Stack>
-
             </Stack>
 
             <Box className="flex w-100 align-items-center justify-center" mt={3}>

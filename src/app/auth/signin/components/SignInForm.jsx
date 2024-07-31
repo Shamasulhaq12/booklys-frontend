@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 'use client';
 
 import { Box, Grid, Typography } from '@mui/material';
@@ -31,9 +33,10 @@ function SignInForm() {
       onSubmit={async values => {
         const signInResp = await signIn({ ...values, email: values?.email?.toLowerCase() });
         if (signInResp?.data) {
-          createTokenCookie(signInResp?.data);
-          dispatch(onLoggedIn(signInResp?.data));
-          router.refresh();
+          console.log(signInResp?.data);
+          // createTokenCookie(signInResp?.data);
+          // dispatch(onLoggedIn(signInResp?.data));
+          // router.refresh();
         }
       }}
     >

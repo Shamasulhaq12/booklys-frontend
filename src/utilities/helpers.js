@@ -131,3 +131,14 @@ export function yupLowercaseValidator(value) {
   const containsUppercase = /[A-Z]/.test(value);
   return !containsUppercase;
 }
+
+export function formatAmount(amount = 0, options = { maximumFractionDigits: 2, minimumFractionDigits: 2 }) {
+  try {
+    const formattedAmount = amount.toLocaleString('en-US', options);
+    if (formattedAmount) return formattedAmount;
+    return amount;
+  } catch (error) {
+    // console.log(error);
+    return '0.00';
+  }
+}
