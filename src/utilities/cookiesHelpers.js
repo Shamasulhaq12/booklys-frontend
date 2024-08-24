@@ -15,3 +15,7 @@ export const createTokenCookie = async data => {
     expires: Date.now() + twelveHours,
   });
 };
+
+export const createPaymentCookie = async data => {
+  cookies().set('is_payment_verified', data?.is_payment_verified);
+};

@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
-import { KeyboardArrowDown, Remove, Settings } from '@mui/icons-material';
+import { Article, KeyboardArrowDown, Person, Remove, Settings } from '@mui/icons-material';
 import FormikField from '@/shared/components/form/FormikField';
 import FormikSelect from '@/shared/components/form/FormikSelect';
 import SubmitBtn from '@/app/common/components/SubmitBtn';
@@ -24,12 +24,17 @@ import { servicesFormInitVals, servicesFormValSchema } from '../utilities/formUt
 import {
   useAddServiceMutation,
   useGetServiceByIdQuery,
+  useGetServiceQuery,
   useUpdateServiceMutation,
 } from '@/services/private/services';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import { border } from '@/styles/common/colors';
 import FormikTimePicker from '@/shared/components/form/FormikTimePicker';
 import FormikDropZone from '@/shared/components/form/FormikDropZone';
+import { priceTypeOptions } from '../utilities/data';
+import { useGetCompanyQuery } from '@/services/private/company';
+import { useGetUserQuery } from '@/services/private/users';
+import BookingFieldArray from './BookingFieldArray';
 
 function AddEditServicesForm({ serviceSlug }) {
   const [initValues, setInitValues] = useState(servicesFormInitVals);
@@ -38,42 +43,66 @@ function AddEditServicesForm({ serviceSlug }) {
   const { data: serviceData } = useGetServiceByIdQuery(serviceSlug, {
     skip: !serviceSlug,
   });
+
+  const { data: companyData } = useGetCompanyQuery();
+
+  const { data: basicServiceData } = useGetServiceQuery({ service_type: 'basic' });
+
+  const { data: userData } = useGetUserQuery();
   // const { data: categoriesData } = useGetCategoriesQuery();
-  // const [getSubcategoriesData, { data: subcategoriesData = [] }] = useLazyGetSubCategoriesQuery();
   const [addService, { error, isSuccess }] = useAddServiceMutation();
   const [updateService, { error: editError, isSuccess: isEditSuccess }] = useUpdateServiceMutation();
   useHandleApiResponse(error, isSuccess, 'Service added successfully!', true);
   useHandleApiResponse(editError, isEditSuccess, 'Service updated successfully!', true);
 
-  // const handleChange = newValue => {
-  //   getSubcategoriesData({ category: newValue });
-  // };
-
   //   TRANSFORMERS
-  // const categoriesOptions = useMemo(() => {
-  //   if (categoriesData) {
-  //     return categoriesData?.results?.map(item => ({
-  //       label: item.name,
-  //       value: item.id,
-  //     }));
-  //   }
+  const companyOptions = useMemo(() => {
+    if (companyData) {
+      return companyData?.map(item => ({
+        label: item.name,
+        value: item.id,
+      }));
+    }
 
-  //   return [];
-  // }, [categoriesData]);
+    return [];
+  }, [companyData]);
+
+  const basicServiceOptions = useMemo(() => {
+    if (basicServiceData) {
+      return basicServiceData?.map(item => ({
+        label: item.service_name,
+        value: item.id,
+      }));
+    }
+
+    return [];
+  }, [basicServiceData]);
+
+  const userOptions = useMemo(() => {
+    if (userData) {
+      return userData?.map(item => ({
+        label: item.username,
+        value: item.id,
+      }));
+    }
+
+    return [];
+  }, [companyData]);
 
   useEffect(() => {
-    if (serviceData) {
+    if (serviceData?.service_slug) {
       setInitValues({
-        name: serviceData?.name || '',
-        category: serviceData?.category || '',
-        sub_category: serviceData?.sub_category || '',
+        service_name: serviceData?.service_name || '',
+        service_sku: serviceData?.service_sku || '',
+        service_description: serviceData?.service_description || '',
+        basic_service: serviceData?.basic_service || '',
+        price_type: serviceData?.price_type || '',
         price: serviceData?.price || '',
-        description: serviceData?.description || '',
-        service_status: serviceData?.service_status || '',
-        availability_days: serviceData?.availability_days || '',
-        availability_start_time: serviceData?.availability_start_time || '',
-        availability_end_time: serviceData?.availability_end_time || '',
-        image: serviceData?.image || '',
+        category: serviceData?.category || '',
+        service_timing: serviceData?.service_timing || '',
+        service_provider: serviceData?.service_provider || '',
+        company: serviceData?.company || '',
+        service_booking_fields: serviceData?.service_booking_fields || [],
       });
     }
   }, [serviceData]);
@@ -85,30 +114,25 @@ function AddEditServicesForm({ serviceSlug }) {
         initialValues={initValues}
         validationSchema={servicesFormValSchema}
         onSubmit={async values => {
-          const formData = new FormData();
-          formData.append('name', values?.name);
-          formData.append('category', values?.category);
-          formData.append('sub_category', values?.sub_category);
-          formData.append('price', values?.price);
-          formData.append('description', values?.description);
-          formData.append('service_status', values?.service_status);
-          formData.append('availability_days', values?.availability_days);
-          formData.append('availability_start_time', values?.availability_start_time);
-          formData.append('availability_end_time', values?.availability_end_time);
-          if (values?.image && typeof values?.image !== 'string') {
-            formData.append('image', values?.image, values?.image?.name);
-          }
-          if (serviceData) {
-            await updateService({ formData, slug: serviceData?.service_slug });
+          if (serviceData?.service_slug) {
+            await updateService({ ...values, slug: serviceData?.service_slug });
           } else {
-            await addService(formData);
+            const payload = {
+              ...values,
+              service_price: [
+                {
+                  price: values?.price,
+                  price_type: values?.price_type,
+                },
+              ],
+            };
+            await addService(payload);
           }
         }}
       >
         {({ isSubmitting, values, resetForm }) => (
           <Form className=" w-1/3">
-
-            <Accordion className=" p-8 rounded-2xl border border-slate-900">
+            <Accordion defaultExpanded className=" mt-8 p-8 rounded-2xl border border-slate-900">
               <AccordionSummary
                 expandIcon={<KeyboardArrowDown />}
                 aria-controls="panel1a-content"
@@ -127,7 +151,7 @@ function AddEditServicesForm({ serviceSlug }) {
               <AccordionDetails>
                 <Stack direction="column" gap="24px">
                   <FormikField
-                    name="name"
+                    name="service_name"
                     label="Service Title"
                     isRequired
                     type="text"
@@ -137,21 +161,21 @@ function AddEditServicesForm({ serviceSlug }) {
 
                   <Divider sx={{ borderColor: border }} className="my-3" />
 
-                  {/* <FormikSelect
-                    name="category"
-                    label="Category"
-                    options={categoriesOptions}
-                    placeholder="Select"
-                    onChange={newValue => handleChange(newValue)}
+                  <FormikField
+                    name="service_sku"
+                    label="Service SKU"
                     isRequired
+                    type="text"
+                    placeholder="Service SKU"
                     isStack
-                    isPortal
-                  /> */}
+                  />
+
+                  <Divider sx={{ borderColor: border }} className="my-3" />
 
                   <FormikField
                     label="Description"
                     placeholder="Enter description..."
-                    name="description"
+                    name="service_description"
                     type="textarea"
                     rows={16}
                     isRequired
@@ -163,10 +187,32 @@ function AddEditServicesForm({ serviceSlug }) {
                   <FormikSelect
                     name="category"
                     label="Category"
-                    // options={categoriesOptions}
                     options={[]}
                     placeholder="Select"
-                    // onChange={newValue => handleChange(newValue)}
+                    isRequired
+                    isStack
+                    isPortal
+                  />
+
+                  <Divider sx={{ borderColor: border }} className="my-3" />
+
+                  <FormikSelect
+                    name="basic_service"
+                    label="Basic Service"
+                    options={basicServiceOptions}
+                    placeholder="Select"
+                    isRequired
+                    isStack
+                    isPortal
+                  />
+
+                  <Divider sx={{ borderColor: border }} className="my-3" />
+
+                  <FormikSelect
+                    name="price_type"
+                    label="Price Type"
+                    options={priceTypeOptions}
+                    placeholder="Select"
                     isRequired
                     isStack
                     isPortal
@@ -185,41 +231,43 @@ function AddEditServicesForm({ serviceSlug }) {
 
                   <Divider sx={{ borderColor: border }} className="my-3" />
 
-                  <Stack direction="row" justifyContent="space-between" alignItems="end" gap={1}>
-                    <FormikTimePicker
-                      label="Availability Start Time"
-                      name="availability_start_time"
-                      isRequired
-                      isStack
-                    />
-                    <Remove color="disabled" className="mb-2" />
-                    <FormikTimePicker
-                      label="Availability End Time"
-                      name="availability_end_time"
-                      isRequired
-                      isStack
-                    />
-                  </Stack>
+                  <FormikTimePicker label="Service Timing" name="service_timing" isRequired isStack />
 
                   <Divider sx={{ borderColor: border }} className="my-3" />
 
-                  <Box>
-                    <Typography variant="label">Add Image</Typography>
+                  <FormikSelect
+                    name="service_provider"
+                    label="Service Provider"
+                    options={userOptions}
+                    placeholder="Select"
+                    isRequired
+                    isStack
+                    isPortal
+                  />
 
-                    <FormikDropZone
-                      src={typeof values?.image === 'string' ? values?.image : ''}
-                      label="Image"
-                      name="image"
-                    />
-                  </Box>
+                  <Divider sx={{ borderColor: border }} className="my-3" />
+
+                  <FormikSelect
+                    name="company"
+                    label="Company"
+                    options={companyOptions}
+                    placeholder="Select"
+                    isRequired
+                    isStack
+                    isPortal
+                  />
                 </Stack>
               </AccordionDetails>
             </Accordion>
 
-            <Stack direction="column" gap="24px" className=" mt-8 p-8 rounded-2xl border border-slate-900">
-              <Stack direction="row" justifyContent="space-between" alignItems="center">
+            <Accordion className=" mt-8 p-8 rounded-2xl border border-slate-900">
+              <AccordionSummary
+                expandIcon={<KeyboardArrowDown />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
                 <Stack direction="row" justifyContent="center" alignItems="center" gap={3}>
-                  <Settings />
+                  <Person />
                   <Box>
                     <Typography variant="h6" fontWeight={500}>
                       User
@@ -227,9 +275,48 @@ function AddEditServicesForm({ serviceSlug }) {
                     <Typography variant="subHead">Who performs the service</Typography>
                   </Box>
                 </Stack>
-                <KeyboardArrowDown />
-              </Stack>
-            </Stack>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Stack direction="column" gap="24px">
+                  <Divider sx={{ borderColor: border }} className="my-3" />
+
+                  <FormikSelect
+                    name="service_provider"
+                    label="Service Provider"
+                    options={userOptions}
+                    placeholder="Select"
+                    isRequired
+                    isStack
+                    isPortal
+                  />
+                </Stack>
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion className=" mt-8 p-8 rounded-2xl border border-slate-900">
+              <AccordionSummary
+                expandIcon={<KeyboardArrowDown />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Stack direction="row" justifyContent="center" alignItems="center" gap={3}>
+                  <Article />
+                  <Box>
+                    <Typography variant="h6" fontWeight={500}>
+                      Booking field
+                    </Typography>
+                    <Typography variant="subHead">What must be filled in when booking</Typography>
+                  </Box>
+                </Stack>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Stack direction="column" gap="24px">
+                  <Divider sx={{ borderColor: border }} className="my-3" />
+
+                  <BookingFieldArray name="service_booking_fields" />
+                </Stack>
+              </AccordionDetails>
+            </Accordion>
 
             <Box className="flex w-100 align-items-center justify-center" mt={3}>
               <SubmitBtn label="Activate Service" isLoading={isSubmitting} className="rounded-3xl" />

@@ -44,10 +44,9 @@ function Topbar({ toggleSidebar = () => {}, isPortal = false }) {
   const modified = useMemo(() => {
     const filtered = topbarItems.filter(item => {
       if (isAuthenticated) {
-        const isAllowed = item?.permissions?.includes(userType);
-        return isAllowed;
+        return item;
       }
-      const isAllowed = item?.permissions?.includes(AUTHENTICATED);
+      const isAllowed = item?.isPublic;
       return isAllowed;
     });
     return filtered;
@@ -100,7 +99,7 @@ function Topbar({ toggleSidebar = () => {}, isPortal = false }) {
               <NavLinkItem
                 label="Sign in"
                 path="/auth/signin"
-                navClassName={`no-underline hidden sm:block navbar-nav-item ${styles.navbarNavItemDark} `}
+                navClassName={`no-underline hidden sm:block navbar-nav-item ${styles.navbarNavItem} `}
               />
 
               <Link href="/auth/signup" className=" no-underline hidden sm:block ">

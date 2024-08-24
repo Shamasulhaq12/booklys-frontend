@@ -18,7 +18,6 @@ import useGetMenuHandlers from '@/customHooks/useGetMenuHandlers';
 import useGetUserRoles from '@/customHooks/useGetUserRoles';
 import { AUTHENTICATED } from '@/utilities/constants';
 import { topbarItems } from '../../utilities/data';
-import SearchInput from '../../common/SearchInput';
 import NavLinkItem from './NavLinkItem';
 import ProfileMenu from '../../common/ProfileMenu';
 import Drawer from './Drawer';
@@ -41,22 +40,13 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
   const modified = useMemo(() => {
     const filtered = topbarItems.filter(item => {
       if (isAuthenticated) {
-        const isAllowed = item?.permissions?.includes(userType);
-        return isAllowed;
+        return item;
       }
-      const isAllowed = item?.permissions?.includes(AUTHENTICATED);
+      const isAllowed = item?.isPublic;
       return isAllowed;
     });
     return filtered;
   }, [userType, isAuthenticated]);
-
-  const handleUserTypeChange = () => {
-    if (type === 'client') {
-      setType('supplier');
-    } else {
-      setType('client');
-    }
-  };
 
   return (
     <Box className={styles.navbarContainer}>
@@ -72,19 +62,15 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             <Box component={Link} href="/">
               <Image src={logo.src} alt="Logo" width={70} height={70} />
             </Box>
-            {userType !== 'supplier' && (
-              <Box className="hidden sm:hidden md:hidden lg:block">
-                <SearchInput />
-              </Box>
-            )}
           </Stack>
         </Box>
 
         <Box className=" flex items-center gap-2">
-          <Box className=" hidden xl:flex flex-grow items-center gap-1">
+          <Box className=" hidden xl:flex flex-grow items-center gap-3">
             {modified?.map(item => (
               <NavLinkItem
                 label={item.title}
+                icon={item.icon}
                 menu={item?.menu}
                 toggle={handleOpenCategoryMenu}
                 path={item.path}
@@ -110,7 +96,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
               <NavLinkItem
                 label="Sign in"
                 path="/auth/signin"
-                navClassName={`no-underline hidden sm:block navbar-nav-item ${styles.navbarNavItemDark} `}
+                navClassName={`no-underline hidden sm:block navbar-nav-item ${styles.navbarNavItem} `}
               />
 
               <Link href="/auth/signup" className=" no-underline hidden sm:block ">

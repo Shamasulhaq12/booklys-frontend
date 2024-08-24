@@ -1,17 +1,51 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/react-in-jsx-scope */
-import { People, FormatListBulleted, Handyman, ManageAccounts, Groups, Engineering, Chat, Category, Diversity3 } from '@mui/icons-material';
+import {
+  People,
+  FormatListBulleted,
+  Handyman,
+  ManageAccounts,
+  Groups,
+  Engineering,
+  Chat,
+  Category,
+  Diversity3,
+  Article,
+  Business,
+  SearchOutlined,
+  CalendarTodayOutlined,
+  FavoriteBorderOutlined,
+  CardGiftcardOutlined,
+  MedicalInformationOutlined,
+  CalendarMonth,
+} from '@mui/icons-material';
 
 import { v4 } from 'uuid';
-import { CLIENT, SUPPLIER, ADMIN, AUTHENTICATED } from '@/utilities/constants';
+import { CLIENT, ADMIN } from '@/utilities/constants';
 
 export const sidebarCommonItemsData = [
+  {
+    id: v4(),
+    path: '/portal/client/calender',
+    title: 'Calender',
+    icon: <CalendarMonth />,
+    order: 1,
+    permissions: [CLIENT],
+  },
+  {
+    id: v4(),
+    path: '/portal/client/company',
+    title: 'Company',
+    icon: <Business />,
+    order: 2,
+    permissions: [CLIENT],
+  },
   {
     id: v4(),
     path: '/portal/client/services',
     title: 'Services',
     icon: <Handyman />,
-    order: 1,
+    order: 3,
     permissions: [CLIENT],
   },
   {
@@ -19,7 +53,15 @@ export const sidebarCommonItemsData = [
     path: '/portal/client/users',
     title: 'Users',
     icon: <People />,
-    order: 2,
+    order: 4,
+    permissions: [CLIENT],
+  },
+  {
+    id: v4(),
+    path: '/portal/client/journals',
+    title: 'Journals',
+    icon: <Article />,
+    order: 5,
     permissions: [CLIENT],
   },
   // {
@@ -118,34 +160,38 @@ export const sidebarAdminItemsData = [
 export const topbarItems = [
   {
     id: v4(),
-    path: '/',
-    title: 'Home',
-    permissions: [SUPPLIER, CLIENT],
+    path: '/search',
+    title: 'Search',
+    icon: <SearchOutlined />,
+    isPublic: true,
   },
   {
     id: v4(),
-    path: '/services/subcatagory',
-    title: 'Categories',
-    menu: true,
-    permissions: [CLIENT, AUTHENTICATED],
+    path: '/appointments',
+    title: 'Appointments',
+    icon: <CalendarTodayOutlined />,
+    isPublic: true,
   },
   {
     id: v4(),
-    path: '/services',
-    title: 'Find Services',
-    permissions: [CLIENT, AUTHENTICATED],
+    path: '/favorites',
+    title: 'Favorites',
+    icon: <FavoriteBorderOutlined />,
+    isPublic: true,
   },
   {
     id: v4(),
-    path: '/about',
-    title: 'About',
-    permissions: [SUPPLIER, CLIENT, AUTHENTICATED],
+    path: '/favorites',
+    title: 'Health Card',
+    icon: <MedicalInformationOutlined />,
+    isPublic: true,
   },
   {
     id: v4(),
-    path: '/contact-us',
-    title: 'Contact',
-    permissions: [SUPPLIER, CLIENT],
+    path: '/gift-cards/buy',
+    title: 'Buy Gift Cards',
+    icon: <CardGiftcardOutlined />,
+    isPublic: true,
   },
 ];
 

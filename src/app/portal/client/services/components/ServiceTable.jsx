@@ -47,8 +47,6 @@ function ServiceTable({
     limit: rowsPerPage,
   });
 
-  console.log(data);
-
   const loading = isLoading || isFetching;
 
   return (

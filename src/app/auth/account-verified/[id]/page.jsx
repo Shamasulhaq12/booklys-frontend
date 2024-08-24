@@ -18,7 +18,7 @@ function AccountVerified({ params: { id } }) {
   const handleVerify = async () => {
     const resp = await verify(id);
     if (!resp?.error) {
-      router.push('/payments/payment-plans', { scroll: false });
+      router.push('/auth/signin', { scroll: false });
     }
   };
   return (

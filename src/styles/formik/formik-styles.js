@@ -1,8 +1,8 @@
-import { primary, grey, border } from '../common/colors';
+import { primary, border } from '../common/colors';
 
 const selectContainerCommonStyles = {
-  border: `1px solid ${grey}`,
-  borderRadius: '1px',
+  border: `1px solid ${border}`,
+  borderRadius: '4px',
   color: '#232329',
   background: 'white',
   width: '100%',
@@ -10,7 +10,7 @@ const selectContainerCommonStyles = {
   transition: 'border 0.3s',
 
   ':hover': {
-    borderColor: grey,
+    borderColor: primary,
   },
 
   ':focus': {

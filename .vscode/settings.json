@@ -1,15 +1,18 @@
 {
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    },
-    "eslint.validate": [
-        "javascript"
-    ],
-    "cSpell.words": [
-        "Booklyz",
-        "Formik",
-        "FormikDropZone",
-        "Swiper",
-        "topbar"
-    ]
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript"],
+  "cSpell.words": ["Booklyz", "Formik", "FormikDropZone", "Swiper", "topbar"],
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "files.associations": {
+  "*.css": "tailwindcss"
+}
 }

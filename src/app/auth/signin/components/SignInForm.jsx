@@ -18,7 +18,7 @@ import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import FormikField from '@/shared/components/form/login/FormikField';
 import SubmitBtn from '@/app/common/components/SubmitBtn';
 import { initialValues, validationSchema } from '../utilities/formUtils';
-import { createTokenCookie } from '@/utilities/cookiesHelpers';
+import { createPaymentCookie, createTokenCookie } from '@/utilities/cookiesHelpers';
 
 function SignInForm() {
   const dispatch = useDispatch();
@@ -33,10 +33,14 @@ function SignInForm() {
       onSubmit={async values => {
         const signInResp = await signIn({ ...values, email: values?.email?.toLowerCase() });
         if (signInResp?.data) {
-          console.log(signInResp?.data);
-          // createTokenCookie(signInResp?.data);
-          // dispatch(onLoggedIn(signInResp?.data));
-          // router.refresh();
+          createTokenCookie(signInResp?.data);
+          createPaymentCookie(signInResp?.data);
+          dispatch(onLoggedIn(signInResp?.data));
+          if (signInResp?.data?.is_payment_verified) {
+            router.push('/portal/client/dashboard');
+          } else {
+            router.push('/payments/payment-plans');
+          }
         }
       }}
     >

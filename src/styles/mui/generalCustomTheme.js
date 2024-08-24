@@ -263,8 +263,8 @@ const theme = createTheme({
           props: { variant: 'contained', color: 'primary' },
           style: {
             textTransform: 'capitalize',
-            fontSize: '16px',
-            fontWeight: 500,
+            fontSize: '15px',
+            fontWeight: 400,
             borderRadius: '5px',
             transition: 'all 0.4s',
             background: primary,

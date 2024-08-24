@@ -5,7 +5,7 @@ import { Checkbox, TableCell, TableHead, TableRow, TableSortLabel, Typography } 
 
 function JournalsTableHead({ headings, order, orderBy, onSelectAllRows, onRequestSort, numSelected, rowCount }) {
   return (
-    <TableHead>
+    <TableHead className=" bg-gray-100 rounded-3xl" sx={{ borderRadius: '10px' }}>
       <TableRow>
         {/* <TableCell padding="checkbox">
           <Checkbox
@@ -27,7 +27,7 @@ function JournalsTableHead({ headings, order, orderBy, onSelectAllRows, onReques
               onClick={() => onRequestSort(cell.id)}
               sx={{ whiteSpace: 'nowrap' }}
             >
-              <Typography>{cell?.label}</Typography>
+              {cell?.label}
             </TableSortLabel>
           </TableCell>
         ))}

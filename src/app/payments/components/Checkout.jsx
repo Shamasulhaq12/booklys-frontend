@@ -35,12 +35,12 @@ function Checkout({ plan }) {
       };
       const response = await sendPaymentStatus(payload);
       if (response?.error) {
-        enqueueSnackbar(response?.error?.data?.error || 'Somthing Went Wrong', { variant: 'error' });
+        enqueueSnackbar(response?.error?.data?.error || 'Something Went Wrong', { variant: 'error' });
         return;
       }
       enqueueSnackbar(response?.data?.message || 'Payment Made', { variant: 'success' });
     } catch (error) {
-      enqueueSnackbar(error || 'Somthing Went Wrong', { variant: 'error' });
+      enqueueSnackbar(error || 'Something Went Wrong', { variant: 'error' });
     }
   };
   const handleCreatePaypalOrder = async (data, actions) => {

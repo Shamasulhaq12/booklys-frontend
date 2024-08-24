@@ -43,4 +43,15 @@ export const momsOptions = [
   },
 ];
 
+export const priceTypeOptions = [
+  {
+    label: 'Fixed',
+    value: 'fixed',
+  },
+  {
+    label: 'Variable',
+    value: 'variable',
+  },
+];
+
 export const test = '';
