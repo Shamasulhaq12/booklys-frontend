@@ -4,15 +4,10 @@
   },
   "eslint.validate": ["javascript"],
   "cSpell.words": ["Booklyz", "Formik", "FormikDropZone", "Swiper", "topbar"],
-  "tailwindCSS.includeLanguages": {
-    "html": "html",
-    "javascript": "javascript",
-    "css": "css"
-  },
+  "tailwindCSS.emmetCompletions": true,
+  "editor.inlineSuggest.enabled": true,
   "editor.quickSuggestions": {
-    "strings": "on"
+    "strings": true
   },
-  "files.associations": {
-  "*.css": "tailwindcss"
-}
+  "css.validate": false
 }

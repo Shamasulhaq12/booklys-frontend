@@ -35,6 +35,7 @@ import { priceTypeOptions } from '../utilities/data';
 import { useGetCompanyQuery } from '@/services/private/company';
 import { useGetUserQuery } from '@/services/private/users';
 import BookingFieldArray from './BookingFieldArray';
+import { useGetCategoriesQuery } from '@/services/private/categories';
 
 function AddEditServicesForm({ serviceSlug }) {
   const [initValues, setInitValues] = useState(servicesFormInitVals);
@@ -49,13 +50,24 @@ function AddEditServicesForm({ serviceSlug }) {
   const { data: basicServiceData } = useGetServiceQuery({ service_type: 'basic' });
 
   const { data: userData } = useGetUserQuery();
-  // const { data: categoriesData } = useGetCategoriesQuery();
+  const { data: categoriesData } = useGetCategoriesQuery();
   const [addService, { error, isSuccess }] = useAddServiceMutation();
   const [updateService, { error: editError, isSuccess: isEditSuccess }] = useUpdateServiceMutation();
   useHandleApiResponse(error, isSuccess, 'Service added successfully!', true);
   useHandleApiResponse(editError, isEditSuccess, 'Service updated successfully!', true);
 
   //   TRANSFORMERS
+  const categoryOptions = useMemo(() => {
+    if (categoriesData) {
+      return categoriesData?.map(item => ({
+        label: item.name,
+        value: item.id,
+      }));
+    }
+
+    return [];
+  }, [categoriesData]);
+
   const companyOptions = useMemo(() => {
     if (companyData) {
       return companyData?.map(item => ({
@@ -87,7 +99,7 @@ function AddEditServicesForm({ serviceSlug }) {
     }
 
     return [];
-  }, [companyData]);
+  }, [userData]);
 
   useEffect(() => {
     if (serviceData?.service_slug) {
@@ -187,7 +199,7 @@ function AddEditServicesForm({ serviceSlug }) {
                   <FormikSelect
                     name="category"
                     label="Category"
-                    options={[]}
+                    options={categoryOptions}
                     placeholder="Select"
                     isRequired
                     isStack
@@ -231,7 +243,13 @@ function AddEditServicesForm({ serviceSlug }) {
 
                   <Divider sx={{ borderColor: border }} className="my-3" />
 
-                  <FormikTimePicker label="Service Timing" name="service_timing" isRequired isStack />
+                  <FormikField
+                    name="service_timing"
+                    label="Service Timing in min"
+                    placeholder="eg. 10min"
+                    isRequired
+                    isStack
+                  />
 
                   <Divider sx={{ borderColor: border }} className="my-3" />
 

@@ -57,9 +57,9 @@ function CompanyTable({
 
         {loading && <TableLoaders />}
 
-        {!loading && data?.results?.length > 0 && (
+        {!loading && data?.length > 0 && (
           <TableBody>
-            {data?.results?.map(item => {
+            {data?.map(item => {
               const isItemSelected = isSelected(item?.id);
 
               return (
@@ -71,19 +71,19 @@ function CompanyTable({
                   key={item?.id}
                 >
                   <TableCell>
-                    <Typography variant="body1">Items</Typography>
+                    <Typography variant="body1">{item?.name}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body1">Items</Typography>
+                    <Typography variant="body1">{item?.email}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body1">Items</Typography>
+                    <Typography variant="body1">{item?.phone}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body1">Items</Typography>
+                    <Typography variant="body1">{item?.address}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body1">Items</Typography>
+                    <Typography variant="body1">{`${item?.company_description?.slice(0, 20)}...`}</Typography>
                   </TableCell>
                 </TableRow>
               );
@@ -95,7 +95,7 @@ function CompanyTable({
 
       <TablePagination
         component={Box}
-        count={data?.results?.length || 0}
+        count={data?.length || 0}
         rowsPerPage={rowsPerPage}
         page={page}
         rowsPerPageOptions={[10, 20, 30]}

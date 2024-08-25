@@ -5,8 +5,9 @@ export const companyFormInitVals = {
   email: '',
   phone: '',
   address: '',
-  owner: '',
   company_description: '',
+  company_images: [],
+  is_active: true
 };
 
 export const companyFormValSchema = Yup.object({
@@ -14,6 +15,5 @@ export const companyFormValSchema = Yup.object({
   email: Yup.string().required('Required!'),
   phone: Yup.string().required('Required!'),
   address: Yup.string().required('Required!'),
-  owner: Yup.string().required('Required!'),
   company_description: Yup.string().max(250, 'Maximum 250 characters allowed').required('Required!'),
 });

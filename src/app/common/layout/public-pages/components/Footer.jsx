@@ -56,7 +56,7 @@ function Footer({ footerText = '', footerBgColor = '', textColor = '', btnBg = '
               </Button>
             </Grid>
           </Grid>
-          <Grid container item xs={9} gap={10} className=" flex ">
+          <Grid container item xs={9} gap={10} className=" flex justify-center items-center ">
 
             <Grid item xs={6} sm={4} md={4} lg={3} xl={1.5} mt="120px">
               <Typography variant="body2" className="mb-3 font-bold text-grey">

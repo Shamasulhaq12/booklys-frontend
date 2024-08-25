@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 export const bookingFieldsArrayInitValue = {
   field_name: '',
   field_type: '',
+  service: 0,
   is_required: false,
 };
 

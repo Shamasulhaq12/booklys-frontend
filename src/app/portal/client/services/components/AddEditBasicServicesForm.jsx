@@ -16,6 +16,7 @@ import FormikTimePicker from '@/shared/components/form/FormikTimePicker';
 import { border } from '@/styles/common/colors';
 import BookingFieldArray from './BookingFieldArray';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
+import { useGetCategoriesQuery } from '@/services/private/categories';
 
 function AddEditBasicServicesForm({ serviceData = {} }) {
   const [initValues, setInitValues] = useState(basicServicesFormInitVals);
@@ -23,10 +24,8 @@ function AddEditBasicServicesForm({ serviceData = {} }) {
   // API HOOKS
   const { data: companyData } = useGetCompanyQuery();
 
-  const { data: basicServiceData } = useGetServiceQuery({ service_type: 'basic' });
-
   const { data: userData } = useGetUserQuery();
-  // const { data: categoriesData } = useGetCategoriesQuery();
+  const { data: categoriesData } = useGetCategoriesQuery();
 
   const [addService, { error, isSuccess }] = useAddServiceMutation();
   const [updateService, { error: editError, isSuccess: isEditSuccess }] = useUpdateServiceMutation();
@@ -34,6 +33,18 @@ function AddEditBasicServicesForm({ serviceData = {} }) {
   useHandleApiResponse(editError, isEditSuccess, 'Service updated successfully!', true);
 
   //   TRANSFORMERS
+
+  const categoryOptions = useMemo(() => {
+    if (categoriesData) {
+      return categoriesData?.map(item => ({
+        label: item.name,
+        value: item.id,
+      }));
+    }
+
+    return [];
+  }, [categoriesData]);
+
   const companyOptions = useMemo(() => {
     if (companyData) {
       return companyData?.map(item => ({
@@ -54,7 +65,7 @@ function AddEditBasicServicesForm({ serviceData = {} }) {
     }
 
     return [];
-  }, [companyData]);
+  }, [userData]);
 
   useEffect(() => {
     if (serviceData?.service_slug) {
@@ -115,7 +126,7 @@ function AddEditBasicServicesForm({ serviceData = {} }) {
                   <FormikSelect
                     name="category"
                     label="Category"
-                    options={[]}
+                    options={categoryOptions}
                     placeholder="Select"
                     isRequired
                     isStack
@@ -146,7 +157,13 @@ function AddEditBasicServicesForm({ serviceData = {} }) {
               </Grid2>
               <Grid2 container spacing={4} xs={12} md={6}>
                 <Grid2 xs={12}>
-                  <FormikTimePicker label="Service Timing" name="service_timing" isRequired isStack />
+                  <FormikField
+                    name="service_timing"
+                    label="Service Timing in min"
+                    placeholder="eg. 10min"
+                    isRequired
+                    isStack
+                  />
                 </Grid2>
                 <Grid2 xs={12}>
                   <FormikSelect
@@ -164,17 +181,6 @@ function AddEditBasicServicesForm({ serviceData = {} }) {
                     name="company"
                     label="Company"
                     options={companyOptions}
-                    placeholder="Select"
-                    isRequired
-                    isStack
-                    isPortal
-                  />
-                </Grid2>
-                <Grid2 xs={12}>
-                  <FormikSelect
-                    name="service_provider"
-                    label="Service Provider"
-                    options={userOptions}
                     placeholder="Select"
                     isRequired
                     isStack
