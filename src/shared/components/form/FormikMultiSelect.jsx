@@ -26,6 +26,7 @@ function FormikMultiSelect({
   const { onBlur: onFieldBlur, value: selectedValue } = field;
   const { setValue } = helpers;
   const { error, touched } = meta;
+  console.log('selectedValue', selectedValue);
 
   const selectedOption = useMemo(
     () => options?.filter(option => selectedValue?.some(item => item === option?.value)),

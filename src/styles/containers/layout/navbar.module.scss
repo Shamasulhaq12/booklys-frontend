@@ -42,20 +42,46 @@
 }
 
 .activeNavLink {
-  color: white;
-  border-bottom: 2px solid white;
-  text-decoration: none;
+  color: $dark;
   font-weight: 500;
+
+  & svg {
+    font-size: 22px;
+    color: $dark;
+    fill: $dark;
+
+    & path {
+      fill: $dark;
+    }
+  }
 }
 
 .navbarNavItem {
-  color: white;
+  color: $grey;
   text-decoration: none;
   border-bottom: 2px solid transparent;
 
+  & svg {
+    font-size: 22px;
+    color: $grey;
+    fill: $grey;
+
+    & path {
+      fill: $grey;
+    }
+  }
+
   &:hover {
-    border-bottom: 2px solid white;
+    color: $dark;
     transition: all 200ms;
+    & svg {
+      color: $dark;
+      fill: $dark;
+  
+      & path {
+        fill: $dark;
+      }
+    }
   }
 }
 

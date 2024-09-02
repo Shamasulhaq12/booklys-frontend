@@ -3,6 +3,7 @@ import colors from '@/styles/common/colors';
 
 const TextField = styled(MuiTextField)({
   width: '100%',
+  transition: 'all 0.3s',
 
   '& .MuiInputBase-root.MuiOutlinedInput-root': {
     '& input': {
@@ -15,7 +16,7 @@ const TextField = styled(MuiTextField)({
       padding: '5px 10px',
     },
 
-    borderRadius: '0',
+    borderRadius: '4px',
 
     '&.Mui-focused': {
       '& .MuiOutlinedInput-notchedOutline': {

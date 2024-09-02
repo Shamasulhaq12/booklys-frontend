@@ -16,7 +16,7 @@ function PlanCard({ plan, xs, sm, md, lg }) {
             <Box className="flex items-center justify-between pb-6 mb-6 border-b">
               <Box>
                 <Typography className="text-sm font-bold tracking-wider uppercase">{plan?.title}</Typography>
-                <Typography variant="h2">${plan?.newPrice}</Typography>
+                <Typography variant="h2">${plan?.newPrice} <span className=" text-lg">/ Month</span></Typography>
               </Box>
               <Box className="flex items-center justify-center w-24 h-24 rounded-full bg-indigo-50">
                 {plan?.icon}
@@ -45,12 +45,12 @@ function PlanCard({ plan, xs, sm, md, lg }) {
           <Box>
             <Link
               href={`/payments/checkout?plan_id=${plan.planId}`}
-              className="inline-flex items-center justify-center w-full h-12 px-6 mb-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+              className="inline-flex items-center justify-center w-full h-12 px-6 mb-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-violet-400 hover:bg-violet-700 focus:shadow-outline focus:outline-none"
             >
               Get started
             </Link>
             <Typography variant="body2" className=" text-gray-600">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+              {plan.description}
             </Typography>
           </Box>
         </Box>

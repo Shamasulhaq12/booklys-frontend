@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, ListItemButton, Tooltip, useMediaQuery } from '@mui/material';
+import { Box, ListItemButton, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import propTypes from 'prop-types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -24,14 +24,14 @@ function SidebarLink({ title, onClick = () => {}, path = undefined, icon = null,
           onMouseOver={isMenu ? () => setHovering(true) : undefined}
           sx={getListItemBtnStyles(isActivePath)}
         >
-          <Box className=" flex flex-col md:flex-row items-center justify-center gap-1 w-full">
+          <Box className=" flex flex-col items-center justify-center gap-1 w-full">
             <Box width="25px" height="25px">
               {icon}
             </Box>
 
-            {/* <Typography variant="body1" pl={1} className="wrapText">
+            <Typography variant="body1" className="text-xs">
               {title}
-            </Typography> */}
+            </Typography>
           </Box>
           {isMenu && isHovering && !isSmallDevice && (
           <ArrowRight

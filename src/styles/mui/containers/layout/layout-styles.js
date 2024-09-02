@@ -1,54 +1,37 @@
-import { primary } from '@/styles/common/colors';
+import { dark, primary } from '@/styles/common/colors';
 
 const miniVariantWidth = '80px';
 export const getListItemBtnStyles = (isActive = false) => ({
-  mx: '20px',
+  mx: '8px',
   justifyContent: 'center',
   alignItems: 'center',
-  color: isActive ? primary : 'black',
-  height: '43px',
+  color: isActive ? dark : 'white',
   background: isActive ? '#ebebeb' : 'transparent',
-  my: '23px',
+  my: '10px',
   flexDirection: 'column',
-  gap: '5px',
   transition: '0.2s ease-in-out',
-  position: 'relative',
+  // position: 'relative',
   borderRadius: '10px',
 
   '&:hover': {
     background: '#ebebeb',
-    color: primary,
+    color: dark,
     '& svg': {
       color: primary,
       fill: primary,
 
       '& path': {
-        fill: primary,
+        fill: dark,
       },
     },
   },
 
-  '& .MuiTypography-root': {
-    display: '-webkit-box',
-    transition: '0.1s ease-in-out',
-    fontFamily: 'var(--font-notoSans), Roboto, sans-serif',
-    fontSize: '14px',
-    fontWeight: 400,
-    width: '100%',
-    whiteSpace: 'break-spaces',
-    WebkitLineClamp: 2,
-    WebkitBoxOrient: 'vertical',
-    overflow: 'hidden',
-  },
-
   '& svg': {
-    width: '24px',
-    height: '24px',
-    color: isActive ? primary : 'white',
-    fill: isActive ? primary : 'white',
+    width: '22px',
+    height: '22px',
 
     '& path': {
-      fill: isActive ? '#001a33' : 'white',
+      fill: isActive ? dark : 'white',
     },
   },
 

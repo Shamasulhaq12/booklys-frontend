@@ -1,42 +1,40 @@
 'use client';
 
 import React, { memo } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import Faqs from './components/Faqs';
-import { darker } from '@/styles/common/colors';
+import { SearchOutlined } from '@mui/icons-material';
+import Faqs from './Faqs';
 
 // COMPONENTS
 
-function FaqContainer({ faqs = [], heading = '', subHeading = '' }) {
+function FaqContainer({ faqs = [] }) {
   return (
-    <Grid container columnSpacing={2} sx={{ marginTop: '120px' }}>
-      <Grid item md={6}>
-        <Typography color={darker} variant="h1">{`${heading} ${subHeading}`}</Typography>
-      </Grid>
-
-      <Grid item md={6}>
-        {faqs?.map(item => (
-          <Faqs
-            key={item?.id}
-            question={item?.question}
-            answer={item?.answer}
-            questionTypoVariant="h6"
-            answerTypoVariant="body1"
-            questionColor="darkPurple"
-            answerColor="darkPurple"
-            questionClassName="px-3"
-            answerClassName="px-3"
-          />
-        ))}
-      </Grid>
-    </Grid>
+    <Box className=" shadow-xl p-10" sx={{ marginTop: '120px' }}>
+      <Box className=" flex gap-3 mb-5 items-center">
+        <SearchOutlined style={{ fontSize: '35px' }} />
+        <Typography variant="h4" className=" font-semibold">
+          FAQs
+        </Typography>
+      </Box>
+      {faqs?.map(item => (
+        <Faqs
+          key={item?.id}
+          question={item?.question}
+          answer={item?.answer}
+          questionTypoVariant="h6"
+          answerTypoVariant="body1"
+          questionColor="darkPurple"
+          answerColor="darkPurple"
+          questionClassName="px-3"
+          answerClassName="px-3"
+        />
+      ))}
+    </Box>
   );
 }
 
 FaqContainer.propTypes = {
-  heading: PropTypes.string,
-  subHeading: PropTypes.string,
   faqs: PropTypes.array,
 };
 

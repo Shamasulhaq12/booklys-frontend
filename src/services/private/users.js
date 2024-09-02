@@ -24,11 +24,15 @@ export const usersApi = privateAPi.injectEndpoints({
       }),
       invalidatesTags: ['GetUser'],
     }),
+
+    addContact: build.mutation({
+      query: body => ({
+        url: '/user/contact-us/',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
-export const {
-  useGetUserQuery,
-  useAddUserMutation,
-  useGetUserByIdQuery,
-} = usersApi;
+export const { useGetUserQuery, useAddUserMutation, useGetUserByIdQuery, useAddContactMutation } = usersApi;

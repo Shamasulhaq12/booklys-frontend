@@ -101,6 +101,12 @@ function FormikDatePicker({
             }}
             desktopModeMediaQuery={isLargeScreen ? '@media (pointer: fine)' : '@media (pointer: coarse)'}
             renderInput={params => <TextField {...params} onBlur={() => setTouched(true)} />}
+            slots={{
+              textField: TextField,
+            }}
+            slotProps={{
+              onBlur: () => setTouched(true),
+            }}
           />
         </LocalizationProvider>
 

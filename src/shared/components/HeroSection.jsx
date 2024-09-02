@@ -5,7 +5,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import CommonFilterForm from '@/app/common/components/CommonFilterForm';
 
-function HeroSection({ heading = '', Description = '', imageSrc = '' }) {
+function HeroSection({ heading = '', Description = '', imageSrc = '', showSearch = false }) {
   return (
     <Box
       sx={{
@@ -48,9 +48,11 @@ function HeroSection({ heading = '', Description = '', imageSrc = '' }) {
           <Typography variant="h6" lineHeight="27px" color="white" sx={{ textAlign: 'center' }}>
             {Description}
           </Typography>
-          <Box my={3} className="flex justify-center items-center gap-2 w-full">
-            <CommonFilterForm />
-          </Box>
+          {showSearch && (
+            <Box my={3} className="flex justify-center items-center gap-2 w-full">
+              <CommonFilterForm />
+            </Box>
+          )}
         </Grid>
       </Grid>
     </Box>
@@ -61,6 +63,7 @@ HeroSection.propTypes = {
   heading: PropTypes.string.isRequired,
   Description: PropTypes.string.isRequired,
   imageSrc: PropTypes.string.isRequired,
+  showSearch: PropTypes.bool.isRequired,
 };
 
 export default HeroSection;

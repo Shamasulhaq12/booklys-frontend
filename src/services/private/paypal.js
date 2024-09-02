@@ -18,7 +18,37 @@ const brandsApi = privateAPi.injectEndpoints({
       }),
       providesTags: ['getPaypalPlansList'],
     }),
+    getBooking: build.query({
+      query: () => ({
+        url: '/booking/bookings/',
+        method: 'GET',
+      }),
+      providesTags: ['GetBooking'],
+    }),
+    addBookingStatus: build.mutation({
+      query: payload => ({
+        url: '/booking/bookings/',
+        method: 'POST',
+        body: payload,
+      }),
+      invalidatesTags: ['GetBooking'],
+    }),
+    updateBookingPaymentStatus: build.mutation({
+      query: id => ({
+        url: `/booking/bookings/${id}/`,
+        method: 'PATCH',
+        body: {
+          payment_status: true,
+        },
+      }),
+      invalidatesTags: ['GetBooking'],
+    }),
   }),
 });
 
-export const { useSendPaymentStatusMutation, useGetPaypalPlansListQuery } = brandsApi;
+export const {
+  useSendPaymentStatusMutation,
+  useGetPaypalPlansListQuery,
+  useAddBookingStatusMutation,
+  useUpdateBookingPaymentStatusMutation,
+} = brandsApi;

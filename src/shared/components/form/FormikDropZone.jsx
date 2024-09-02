@@ -17,6 +17,8 @@ function FormikDropZone({ name, onChange = () => {}, src = '', multiple = false 
   const { error, touched } = meta;
   const { setValue } = helpers;
 
+  console.log(value);
+
   const [addedFile, setAddedFile] = useState(null);
 
   // THEME COLORS

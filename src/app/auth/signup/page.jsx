@@ -26,7 +26,7 @@ function SignUp() {
         className=" relative bg-white h-full rounded-2xl flex justify-center"
       >
         <Box sx={{ paddingX: '60px', maxWidth: '650px' }}>
-          <Box className="w-full flex justify-center">
+          <Box className="w-full flex justify-center py-7">
             <Link href="/">
               <Image src={logo} alt="Logo" height={150} width={150} />
             </Link>
@@ -41,13 +41,13 @@ function SignUp() {
         <Typography variant="body2" color="grey" sx={{ position: 'absolute', bottom: '10px' }}>
           Powered by{' '}
           <a
-            href="https://beyonderissolutions.com/"
+            href="https://codesetsolutions.com/"
             target="_blank"
             rel="noreferrer"
             style={{ color: 'grey', fontSize: 'inherit' }}
           >
             {' '}
-            Beyond Eris Solutions&#169; 2024
+            Code Set Solutions&#169; 2024
           </a>
         </Typography>
       </Box>

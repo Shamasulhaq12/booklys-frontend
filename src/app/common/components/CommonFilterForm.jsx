@@ -2,7 +2,8 @@
 import PropTypes from 'prop-types';
 import { Button, CircularProgress, Grid } from '@mui/material';
 import { Form, Formik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import SubmitBtn from './SubmitBtn';
 // import { ratingOptions } from '../utilities/data';
 import { searchFilterFormInitialValue } from '../utilities/formUtils';
@@ -14,23 +15,31 @@ import { formikSearchSelectStyles } from '@/styles/formik/formik-styles';
 // import { useGetCategoriesQuery, useLazyGetSubCategoriesQuery } from '@/services/private/categories';
 
 function CommonFilterForm({
+  searchParams = {},
   onFormSubmit = () => {},
   isLoading = false,
   isAdmin = false,
   isAllServices = false,
   placeholderText = 'Search ...',
 }) {
+  const [initValues, setInitValues] = useState(searchFilterFormInitialValue);
+  const params = useSearchParams();
+  const paramsObject = Object.fromEntries(params.entries());
+
+  const router = useRouter();
   // const { data: cities = [] } = useGetCitiesQuery({ country: 8 });
   // const { data: categoriesData } = useGetCategoriesQuery();
   // const [getSubcategoriesData, { data: subcategoriesData = [] }] = useLazyGetSubCategoriesQuery();
   // const citiesOptions = transformFilterOptions(cities?.results, 'name', 'id');
 
-  // useEffect(() => {
-  //   const getSubcategories = async () => {
-  //     await getSubcategoriesData();
-  //   };
-  //   getSubcategories();
-  // }, []);
+  useEffect(() => {
+    if (paramsObject?.search || paramsObject?.city) {
+      setInitValues({
+        search: paramsObject?.search || '',
+        city: paramsObject?.city || '',
+      });
+    }
+  }, [paramsObject?.search, paramsObject?.city]);
 
   //   TRANSFORMERS
   // const categoriesOptions = useMemo(() => {
@@ -73,25 +82,46 @@ function CommonFilterForm({
   //   }
   // };
 
-  const handleSearch = (newValue, resetForm) => {
-    if (isAdmin) {
-      if (!newValue) {
-        onFormSubmit(searchFilterFormInitialValue);
-        resetForm({ values: searchFilterFormInitialValue });
-      }
-    }
-  };
+  // const handleSearch = (newValue, resetForm) => {
+  //   if (isAdmin) {
+  //     if (!newValue) {
+  //       onFormSubmit(searchFilterFormInitialValue);
+  //       resetForm({ values: searchFilterFormInitialValue });
+  //     }
+  //   }
+  // };
 
   return (
-    <Formik initialValues={searchFilterFormInitialValue} onSubmit={onFormSubmit} enableReinitialize>
+    <Formik
+      initialValues={initValues}
+      onSubmit={async values => {
+        if (values?.search || values?.city) {
+          const queryParams = {};
+
+          Object.entries(values).forEach(([key, value]) => {
+            if (value) {
+              queryParams[key] = value;
+            }
+          });
+
+          const searchQuery = new URLSearchParams(queryParams).toString();
+          router.push(`/search?${searchQuery}`);
+        }
+      }}
+      enableReinitialize
+    >
       {({ values, resetForm }) => (
         <Form className=" w-full flex justify-center">
-          <Grid className="w-full max-h-14 overflow-hidden" justifyContent="center" alignItems="center" container>
+          <Grid
+            className="w-full max-h-14 overflow-hidden"
+            justifyContent="center"
+            alignItems="center"
+            container
+          >
             {/* SEARCH  */}
             <Grid item xs={5.375}>
               <FormikSearchInput
                 className="rounded-s-full h-14"
-                onChange={newValue => handleSearch(newValue, resetForm)}
                 name="search"
                 placeholder={placeholderText}
               />
@@ -100,7 +130,7 @@ function CommonFilterForm({
             {/* CITY */}
             <Grid item xs={5.375}>
               <FormikSelect
-                name="serviceCities__city__id"
+                name="city"
                 options={[]}
                 className=" h-14"
                 style={formikSearchSelectStyles}
@@ -129,6 +159,7 @@ function CommonFilterForm({
 }
 
 CommonFilterForm.propTypes = {
+  searchParams: PropTypes.object,
   onFormSubmit: PropTypes.func,
   isLoading: PropTypes.bool,
   isAdmin: PropTypes.bool,

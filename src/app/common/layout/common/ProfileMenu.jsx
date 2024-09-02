@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 'use client';
 
 import React from 'react';
@@ -11,7 +13,7 @@ import { topbarMenuStyles } from '@/styles/mui/containers/layout/layout-styles';
 import useGetUserRoles from '@/customHooks/useGetUserRoles';
 
 function ProfileMenu({ anchorEl, handleClose }) {
-  const { isSupplier, isClient } = useGetUserRoles();
+  const { isSupplier } = useGetUserRoles();
   const userInfo = useSelector(state => state.auth.user);
   const { handleLogout } = useAuth();
   const router = useRouter();
@@ -34,16 +36,21 @@ function ProfileMenu({ anchorEl, handleClose }) {
       }}
     >
       <MenuList sx={{ outline: 'none', border: 'none' }} disablePadding>
-        <MenuItem
+        {/* <MenuItem
           onClick={handleClose}
           component={Link}
           className="resetLink"
           href={`/portal/profile/${userInfo?.username}`}
         >
           <ListItemText>My Profile</ListItemText>
-        </MenuItem>
-        {(isSupplier || isClient) && (
-          <MenuItem onClick={handleClose} component={Link} className="resetLink" href={isSupplier ? '/portal/supplier/dashboard' : '/portal/client/dashboard'}>
+        </MenuItem> */}
+        {isSupplier && (
+          <MenuItem
+            onClick={handleClose}
+            component={Link}
+            className="resetLink"
+            href={isSupplier ? '/portal/owner/dashboard' : '/portal/client/dashboard'}
+          >
             <ListItemText>Dashboard</ListItemText>
           </MenuItem>
         )}

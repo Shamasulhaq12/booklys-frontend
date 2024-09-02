@@ -7,7 +7,7 @@ import HeroSection from '@/shared/components/HeroSection';
 import { primary } from '@/styles/common/colors';
 import useGetUserRoles from '@/customHooks/useGetUserRoles';
 
-function PageWrapper({ heading, Description, imageSrc, bgColor, children, showButton }) {
+function PageWrapper({ heading, Description, imageSrc, bgColor, children, showButton, showSearch }) {
   const { isSupplier } = useGetUserRoles();
   return (
     <>
@@ -37,6 +37,7 @@ function PageWrapper({ heading, Description, imageSrc, bgColor, children, showBu
         ]}
         imageSrc={imageSrc}
         bgColor={bgColor}
+        showSearch={showSearch}
       />
 
       <Container variant="public" sx={{ minHeight: '700px', marginTop: '20px' }}>{children}</Container>
@@ -51,5 +52,6 @@ PageWrapper.propTypes = {
   imageSrc: PropTypes.string.isRequired,
   bgColor: PropTypes.string.isRequired,
   showButton: PropTypes.bool.isRequired,
+  showSearch: PropTypes.bool.isRequired,
 };
 export default PageWrapper;

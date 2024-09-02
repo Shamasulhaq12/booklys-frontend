@@ -10,9 +10,9 @@ import SubCategoriesCards from './components/SubCategoriesCards';
 
 function Home() {
   return (
-    <PageWrapper bgColor={primary} heading="Almost all of Sweden's salons" imageSrc={image.src} showButton>
+    <PageWrapper bgColor={primary} heading="Almost all of Sweden's salons" imageSrc={image.src} showSearch showButton>
       <Link href="/">
-        <Image src={banner} alt="Logo" width={2934} height={861} />
+        <Image src={banner} alt="banner" width={2934} height={861} />
       </Link>
       <Box className=" mt-12">
         <Typography variant="h4">Book beauty</Typography>

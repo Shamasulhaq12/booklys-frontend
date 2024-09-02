@@ -1,26 +1,66 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/react-in-jsx-scope */
-import { People, FormatListBulleted, Handyman, ManageAccounts, Groups, Engineering, Chat, Category, Diversity3 } from '@mui/icons-material';
+import {
+  People,
+  FormatListBulleted,
+  Handyman,
+  ManageAccounts,
+  Groups,
+  Engineering,
+  Chat,
+  Category,
+  Diversity3,
+  Article,
+  Business,
+  SearchOutlined,
+  CalendarTodayOutlined,
+  CalendarMonth,
+  BusinessOutlined,
+} from '@mui/icons-material';
 
 import { v4 } from 'uuid';
-import { CLIENT, SUPPLIER, ADMIN, AUTHENTICATED } from '@/utilities/constants';
+import { CLIENT, ADMIN, SUPPLIER } from '@/utilities/constants';
 
 export const sidebarCommonItemsData = [
   {
     id: v4(),
-    path: '/portal/client/services',
-    title: 'Services',
-    icon: <Handyman />,
+    path: '/portal/owner/calender',
+    title: 'Calender',
+    icon: <CalendarMonth />,
     order: 1,
-    permissions: [CLIENT],
+    permissions: [CLIENT, SUPPLIER],
   },
   {
     id: v4(),
-    path: '/portal/client/users',
+    path: '/portal/owner/company',
+    title: 'Company',
+    icon: <Business />,
+    order: 2,
+    permissions: [CLIENT, SUPPLIER],
+  },
+  {
+    id: v4(),
+    path: '/portal/owner/services',
+    title: 'Services',
+    icon: <Handyman />,
+    order: 3,
+    permissions: [CLIENT, SUPPLIER],
+  },
+  {
+    id: v4(),
+    path: '/portal/owner/users',
     title: 'Users',
     icon: <People />,
-    order: 2,
-    permissions: [CLIENT],
+    order: 4,
+    permissions: [CLIENT, SUPPLIER],
+  },
+  {
+    id: v4(),
+    path: '/portal/owner/journals',
+    title: 'Journals',
+    icon: <Article />,
+    order: 5,
+    permissions: [CLIENT, SUPPLIER],
   },
   // {
   //   id: v4(),
@@ -118,34 +158,24 @@ export const sidebarAdminItemsData = [
 export const topbarItems = [
   {
     id: v4(),
-    path: '/',
-    title: 'Home',
-    permissions: [SUPPLIER, CLIENT],
+    path: '/search',
+    title: 'Search',
+    icon: <SearchOutlined />,
+    isPublic: true,
   },
   {
     id: v4(),
-    path: '/services/subcatagory',
-    title: 'Categories',
-    menu: true,
-    permissions: [CLIENT, AUTHENTICATED],
+    path: '/appointments',
+    title: 'Appointments',
+    icon: <CalendarTodayOutlined />,
+    isPublic: true,
   },
   {
     id: v4(),
-    path: '/services',
-    title: 'Find Services',
-    permissions: [CLIENT, AUTHENTICATED],
-  },
-  {
-    id: v4(),
-    path: '/about',
-    title: 'About',
-    permissions: [SUPPLIER, CLIENT, AUTHENTICATED],
-  },
-  {
-    id: v4(),
-    path: '/contact-us',
-    title: 'Contact',
-    permissions: [SUPPLIER, CLIENT],
+    path: '/payments/payment-plans',
+    title: 'List your business',
+    icon: <BusinessOutlined />,
+    isPublic: true,
   },
 ];
 

@@ -138,7 +138,6 @@ export function formatAmount(amount = 0, options = { maximumFractionDigits: 2, m
     if (formattedAmount) return formattedAmount;
     return amount;
   } catch (error) {
-    // console.log(error);
     return '0.00';
   }
 }

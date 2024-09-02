@@ -72,7 +72,7 @@ function Drawer({ showNavbar, handleShowNavbar }) {
           <List onClick={handleShowNavbar}>
             <DrawerListItem path={`/portal/profile/${user?.username}`} label="Profile" />
 
-            <DrawerListItem path={isSupplier ? '/portal/supplier' : '/portal/client'} label="Dashboard" />
+            <DrawerListItem path={isSupplier ? '/portal/owner' : '/portal/client'} label="Dashboard" />
 
           </List>
         )}

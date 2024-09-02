@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Noto_Sans } from 'next/font/google';
 import './globals.css';
 import '../index.scss';
+import 'react-big-calendar/lib/sass/styles.scss';
 
 // WRAPPERS
 import LayoutWrapper from './common/components/wrappers/LayoutWrapper';

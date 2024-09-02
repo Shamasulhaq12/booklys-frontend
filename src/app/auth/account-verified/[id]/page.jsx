@@ -18,13 +18,13 @@ function AccountVerified({ params: { id } }) {
   const handleVerify = async () => {
     const resp = await verify(id);
     if (!resp?.error) {
-      router.push('/payments/payment-plans', { scroll: false });
+      router.push('/auth/signin', { scroll: false });
     }
   };
   return (
     <Box className=" h-screen w-full flex justify-center items-center">
       <Stack justifyContent="center" alignItems="center" gap={3}>
-        <Image src={logo.src} alt="Logo" width={150} height={150} />
+        <Image src={logo.src} alt="Logo" className="py-7" width={150} height={150} />
         <Typography variant="h6" className="my-2 text-center">
           You will need to activate your account for complete registration!
         </Typography>

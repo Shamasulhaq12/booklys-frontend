@@ -29,7 +29,7 @@ function PayPalPaymentPage() {
 
   const selectedPlan = useMemo(() => plansList.find(plan => plan.planId === planId), [planId]);
   return (
-    <Box width="100vw" height="100vh" display="flex" justifyContent="center" alignItems="center">
+    <Box className=" flex justify-center items-center w-full h-screen">
       <PayPalScriptProvider options={initialValues}>
         <Stack direction="row">
           <Checkout plan={selectedPlan} />

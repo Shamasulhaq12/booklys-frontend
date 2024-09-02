@@ -11,5 +11,12 @@
         "FormikDropZone",
         "Swiper",
         "topbar"
-    ]
+    ],
+    "tailwindCSS.experimental.classRegex": [
+    "someRegexPattern" // This should be modified or omitted.
+  ],
+  "tailwindCSS.files.exclude": ["**/*.scss"],
+  "tailwindCSS.includeLanguages": {
+    "scss": "postcss-scss"
+  }
 }

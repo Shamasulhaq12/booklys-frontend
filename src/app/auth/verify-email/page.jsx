@@ -36,7 +36,7 @@ function VerifyEmail() {
   return (
     <Box className=" h-screen w-full flex justify-center items-center">
       <Stack justifyContent="center" alignItems="center" gap={3}>
-        <Image src={logo.src} alt="Logo" width={150} height={150} />
+        <Image src={logo.src} alt="Logo" className="py-7" width={150} height={150} />
         <Typography variant="h6" className="my-2 text-center">
           Verify Your Email
         </Typography>

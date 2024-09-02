@@ -16,7 +16,7 @@ function FormikSelect({
   options,
   label = null,
   className = '',
-  style = {},
+  style = null,
   placeholder = 'Select...',
   onChange = () => {},
   onBlur = () => {},

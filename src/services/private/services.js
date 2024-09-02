@@ -4,7 +4,7 @@ export const servicesApi = privateAPi.injectEndpoints({
   endpoints: build => ({
     getService: build.query({
       query: params => ({
-        url: '/services/company/',
+        url: '/services/services/',
         method: 'GET',
         params,
       }),
@@ -17,31 +17,36 @@ export const servicesApi = privateAPi.injectEndpoints({
     }),
 
     getServiceById: build.query({
-      query: slug => `/services/company/${slug}/`,
+      query: slug => `/services/services/${slug}/`,
       providesTags: ['GetServiceById'],
     }),
 
+    getServiceTimeSlots: build.query({
+      query: () => '/services/available-staff-slots/',
+      providesTags: ['GetServiceTimeSlots'],
+    }),
+
     addService: build.mutation({
-      query: formData => ({
-        url: '/services/company/',
+      query: body => ({
+        url: '/services/services/',
         method: 'POST',
-        body: formData,
+        body,
       }),
-      invalidatesTags: ['GetService'],
+      invalidatesTags: ['GetService', 'GetServiceById'],
     }),
 
     UpdateService: build.mutation({
       query: body => ({
-        url: `/services/company/${body?.slug}/`,
+        url: `/services/services/${body?.id}/`,
         method: 'PUT',
-        body: body?.formData,
+        body,
       }),
       invalidatesTags: ['GetService', 'GetServiceById'],
     }),
 
     deleteService: build.mutation({
       query: slug => ({
-        url: `/api/service/services/${slug}/`,
+        url: `/service/services/${slug}/`,
         method: 'DELETE',
       }),
       invalidatesTags: ['GetService', 'GetServiceById'],
@@ -64,8 +69,9 @@ export const {
   useGetServiceQuery,
   useGetPopularServiceQuery,
   useAddServiceMutation,
-  useUpdateServiceMutation,
   useGetServiceByIdQuery,
+  useGetServiceTimeSlotsQuery,
+  useUpdateServiceMutation,
   useDeleteServiceMutation,
   useUpdateServiceStatusMutation,
 } = servicesApi;

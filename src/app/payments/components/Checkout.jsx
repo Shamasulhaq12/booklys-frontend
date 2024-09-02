@@ -5,6 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { Avatar, Box, Card, CardContent, Stack, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import SectionLoader from '@/app/common/loaders/SectionLoader';
 import { formatAmount } from '@/utilities/helpers';
 import { useSendPaymentStatusMutation } from '@/services/private/paypal';
@@ -13,6 +14,7 @@ const cardHeadingFont = { fontSize: 16 };
 const planSummaryStyleBox = { justifyContent: 'space-between' };
 const paymentCardHeadingStyle = { fontSize: 16, fontWeight: 600 };
 function Checkout({ plan }) {
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
   const [{ isPending }] = usePayPalScriptReducer();
@@ -32,15 +34,20 @@ function Checkout({ plan }) {
         payment_id: data.paymentID,
         payment_type: 'subscription',
         subscription_plan_id: plan.planId,
+        subscription_name: plan.title,
+        subscription_price: parseFloat(plan.newPrice),
+        subscription_features: plan.planOptions,
+        subscription_duration_days: plan.subscription_duration_days,
       };
       const response = await sendPaymentStatus(payload);
       if (response?.error) {
-        enqueueSnackbar(response?.error?.data?.error || 'Somthing Went Wrong', { variant: 'error' });
+        enqueueSnackbar(response?.error?.data?.error || 'Something Went Wrong', { variant: 'error' });
         return;
       }
+      router.push('/auth/signin');
       enqueueSnackbar(response?.data?.message || 'Payment Made', { variant: 'success' });
     } catch (error) {
-      enqueueSnackbar(error || 'Somthing Went Wrong', { variant: 'error' });
+      enqueueSnackbar(error || 'Something Went Wrong', { variant: 'error' });
     }
   };
   const handleCreatePaypalOrder = async (data, actions) => {
