@@ -92,15 +92,13 @@ function AddEditServicesForm({ serviceSlug }) {
   const userOptions = useMemo(() => {
     if (userData) {
       return userData?.map(item => ({
-        label: item.username,
+        label: item.first_name,
         value: item.id,
       }));
     }
 
     return [];
   }, [userData]);
-
-  console.log(serviceData?.basic_service);
 
   useEffect(() => {
     if (serviceData?.id) {
