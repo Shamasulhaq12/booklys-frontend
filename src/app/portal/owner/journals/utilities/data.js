@@ -4,16 +4,24 @@ export const journalTableHeadCells = [
     label: 'Name',
   },
   {
-    id: 'organization_number',
-    label: 'Organization number',
+    id: 'phone',
+    label: 'Phone',
   },
   {
-    id: 'business_manager',
-    label: 'Business manager',
+    id: 'email',
+    label: 'Email',
   },
   {
-    id: 'number_of_practitioners',
-    label: 'Number of practitioners',
+    id: 'price',
+    label: 'Price',
+  },
+  {
+    id: 'owner',
+    label: 'Owner',
+  },
+  {
+    id: 'description',
+    label: 'Company Description',
   },
   {
     id: 'action',

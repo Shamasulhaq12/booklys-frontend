@@ -4,7 +4,7 @@ export const journalsApi = privateAPi.injectEndpoints({
   endpoints: build => ({
     getJournals: build.query({
       query: params => ({
-        url: '/user-profile/user-profile/',
+        url: '/booking/journals/',
         method: 'GET',
         params,
       }),
@@ -16,20 +16,20 @@ export const journalsApi = privateAPi.injectEndpoints({
       providesTags: ['GetJournalsById'],
     }),
 
-    addJournals: build.mutation({
+    addJournal: build.mutation({
       query: body => ({
-        url: '/user-profile/user-profile/',
+        url: '/booking/journals/',
         method: 'POST',
         body,
       }),
       invalidatesTags: ['GetJournals'],
     }),
 
-    updateJournals: build.mutation({
-      query: body => ({
-        url: `/services/company/${body?.slug}/`,
+    updateJournal: build.mutation({
+      query: values => ({
+        url: `/booking/journals/${values?.id}/`,
         method: 'PUT',
-        body: body?.formData,
+        body: values,
       }),
       invalidatesTags: ['GetJournals', 'GetJournalsById'],
     }),
@@ -41,13 +41,22 @@ export const journalsApi = privateAPi.injectEndpoints({
       }),
       invalidatesTags: ['GetJournals', 'GetJournalsById'],
     }),
+    getOwners: build.query({
+      query: params => ({
+        url: '/user-profile/user-profile/',
+        method: 'GET',
+        params,
+      }),
+      providesTags: ['GetJournals'],
+    }),
   }),
 });
 
 export const {
   useGetJournalsQuery,
-  useAddJournalsMutation,
+  useAddJournalMutation,
   useGetJournalsByIdQuery,
-  useUpdateJournalsMutation,
+  useUpdateJournalMutation,
   useDeleteJournalsMutation,
+  useGetOwnersQuery
 } = journalsApi;

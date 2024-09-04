@@ -16,6 +16,12 @@ export const createTokenCookie = async data => {
   });
 };
 
+export const getTokenCookie = () => {
+  'use server';
+
+  return cookies().get('token');
+};
+
 export const createPaymentCookie = async data => {
   'use server';
 

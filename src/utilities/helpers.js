@@ -141,3 +141,12 @@ export function formatAmount(amount = 0, options = { maximumFractionDigits: 2, m
     return '0.00';
   }
 }
+
+// It is a common options maker we can make any option array from it by pasing value key and label key to it
+
+export const getCommonOptionsMaker = (optionsArray, valueKey = 'id', labelKey = 'name') => (optionsArray
+  ? optionsArray?.map(item => ({
+    value: item[valueKey],
+    label: item[labelKey],
+  }))
+  : []);

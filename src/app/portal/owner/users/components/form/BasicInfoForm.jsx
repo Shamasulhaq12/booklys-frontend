@@ -42,51 +42,28 @@ function BasicInfoForm() {
       >
         {({ isSubmitting, values, resetForm, errors }) => (
           <Form>
-            {console.log('errors', errors)}
             <Stack className="w-full" rowGap={4}>
-              <Grid2 spacing={4} container>
-                <Grid2 container spacing={4} xs={12} md={6}>
-                  <Grid2 xs={12}>
+              <Grid2 spacing={6} container>
+                <Grid2 container spacing={3} xs={12} md={6}>
+                  <Stack spacing={2} width="100%">
                     <FormikField
                       name="first_name"
                       label="First Name"
                       isRequired
                       type="text"
-                      placeholder="Service Title"
+                      placeholder="First Name"
                       isStack
                     />
-                  </Grid2>
-                  <Grid2 xs={12}>
-                    <FormikField
-                      name="last_name"
-                      label="Last Name"
-                      isRequired
-                      type="text"
-                      placeholder="Service Title"
-                      isStack
-                    />
-                  </Grid2>
-                  <Grid2 xs={12}>
+
                     <FormikField
                       name="nick_name"
                       label="Nick Name"
                       isRequired
                       type="text"
-                      placeholder="Service Title"
+                      placeholder="Nick Name"
                       isStack
                     />
-                  </Grid2>
-                  <Grid2 xs={12}>
-                    <FormikField
-                      name="signature"
-                      label="Signature"
-                      isRequired
-                      type="text"
-                      placeholder="Signature"
-                      isStack
-                    />
-                  </Grid2>
-                  <Grid2 xs={12}>
+
                     <FormikField
                       name="social_security_number"
                       label="Social Security Number"
@@ -95,9 +72,31 @@ function BasicInfoForm() {
                       placeholder="Social Security Number"
                       isStack
                     />
-                  </Grid2>
+                  </Stack>
+
                 </Grid2>
-                <Grid2 xs={6} />
+                <Grid2 container spacing={3} xs={12} md={6}>
+                  <Stack spacing={2} width="100%">
+                    <FormikField
+                      name="last_name"
+                      label="Last Name"
+                      isRequired
+                      type="text"
+                      placeholder="Last Name"
+                      isStack
+                    />
+
+                    <FormikField
+                      name="signature"
+                      label="Signature"
+                      isRequired
+                      type="text"
+                      placeholder="Signature"
+                      isStack
+                    />
+
+                  </Stack>
+                </Grid2>
               </Grid2>
               <ContactFieldArray name="staff_contacts" />
             </Stack>

@@ -38,7 +38,6 @@ function ContactFieldArray({ name }) {
                         options={callingCodeOptions}
                       />
                     </Grid2>
-
                     <Grid2 xs={8} sm={9}>
                       <FormikField
                         label="Phone"
@@ -50,7 +49,7 @@ function ContactFieldArray({ name }) {
                       />
                     </Grid2>
                   </Grid2>
-                  <Grid2 xs={12} md={6}>
+                  <Grid2 xs={12} md={6} width="100%">
                     <FormikField
                       name={`${name}.${index}.email`}
                       label="Email address"

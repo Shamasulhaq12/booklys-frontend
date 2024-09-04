@@ -6,7 +6,7 @@ export const journalFormInitVals = {
   phone: '',
   price: '',
   owner: '',
-  company_description: '',
+  description: '',
 };
 
 export const journalFormValSchema = Yup.object({
@@ -15,5 +15,5 @@ export const journalFormValSchema = Yup.object({
   phone: Yup.string().required('Required!'),
   price: Yup.string().required('Required!'),
   owner: Yup.string().required('Required!'),
-  company_description: Yup.string().max(250, 'Maximum 250 characters allowed').required('Required!'),
+  description: Yup.string().max(250, 'Maximum 250 characters allowed').required('Required!'),
 });

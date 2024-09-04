@@ -21,6 +21,8 @@ function Company() {
   const { data: companyData } = useGetPublicCompanyByIdQuery(paramsId);
   const { data: serviceData } = useGetPublicServiceQuery({ company: paramsId });
 
+  console.log(' companyData?.company_staff ==> ', companyData?.company_staff);
+
   return (
     <Container variant="portal" sx={{ marginTop: '70px' }}>
       <Breadcrumbs aria-label="breadcrumb">
@@ -82,7 +84,7 @@ function Company() {
             <Box className="mt-6">
               {companyData?.company_staff?.map(item => (
                 <>
-                  <StaffItemGrid name={`${item?.staff_first_name} ${item?.staff_last_name}`} rating={item?.staff_rating} />
+                  <StaffItemGrid name={`${item?.first_name} ${item?.last_name}`} rating={item?.staff_rating} />
                   <Divider sx={{ borderColor: border }} className="my-3" />
                 </>
               ))}

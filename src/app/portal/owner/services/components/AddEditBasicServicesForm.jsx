@@ -101,7 +101,7 @@ function AddEditBasicServicesForm({ serviceData = {}, toggleModal = () => {} }) 
         {({ isSubmitting, values, setFieldValue, resetForm }) => (
           <Form>
             <Grid2 spacing={4} alignItems="start" container>
-              <Grid2 container spacing={4} xs={12} md={6}>
+              <Grid2 container spacing={3} xs={12} md={6}>
                 <Grid2 xs={12}>
                   <FormikField
                     name="service_name"
@@ -155,7 +155,7 @@ function AddEditBasicServicesForm({ serviceData = {}, toggleModal = () => {} }) 
                   />
                 </Grid2>
               </Grid2>
-              <Grid2 container spacing={4} xs={12} md={6}>
+              <Grid2 container spacing={3} xs={12} md={6}>
                 <Grid2 xs={12}>
                   <FormikField
                     name="service_timing"
@@ -198,7 +198,7 @@ function AddEditBasicServicesForm({ serviceData = {}, toggleModal = () => {} }) 
                   />
                 </Grid2>
               </Grid2>
-              <Grid2 container spacing={4} xs={12} md={12}>
+              <Grid2 container spacing={3} xs={12} md={12}>
                 <Grid2 xs={12}>
                   <Divider sx={{ borderColor: border }} className="my-3" />
                   <Typography variant="h6" fontWeight={500}>

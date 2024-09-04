@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Form, Formik } from 'formik';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import { Box } from '@mui/material';
@@ -8,20 +8,28 @@ import SubmitBtn from '@/app/common/components/SubmitBtn';
 import FormikField from '@/shared/components/form/FormikField';
 import FormikSelect from '@/shared/components/form/FormikSelect';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
-import { useAddJournalsMutation, useUpdateJournalsMutation } from '@/services/private/journals';
+import { useAddJournalMutation, useGetOwnersQuery, useUpdateJournalMutation } from '@/services/private/journals';
 import { journalFormInitVals, journalFormValSchema } from '../../utilities/formUtils';
 
-function AddEditJournalForm({ journalData = {} }) {
+function AddEditJournalForm({ journalData = null, toggleModal = () => {} }) {
   const [initValues, setInitValues] = useState(journalFormInitVals);
 
-  const [addJournal, { error, isSuccess }] = useAddJournalsMutation();
-  const [updateJournal, { error: editError, isSuccess: isEditSuccess }] = useUpdateJournalsMutation();
+  const { data: ownerData } = useGetOwnersQuery();
+
+  const [addJournal, { error, isSuccess }] = useAddJournalMutation();
+  const [updateJournal, { error: editError, isSuccess: isEditSuccess }] = useUpdateJournalMutation();
   useHandleApiResponse(error, isSuccess, 'Journal added successfully!', true);
   useHandleApiResponse(editError, isEditSuccess, 'Journal updated successfully!', true);
+
+  const ownersOptions = useMemo(() => (ownerData?.length > 0 ? ownerData.map(option => ({
+    label: `${option?.first_name} ${option?.last_name} `,
+    value: option?.id
+  })) : []), [ownerData]);
+
   useEffect(() => {
     if (journalData) {
       setInitValues({
-        name: journalData?.name || '',
+        ...(journalData || {})
       });
     }
   }, [journalData]);
@@ -33,10 +41,11 @@ function AddEditJournalForm({ journalData = {} }) {
         validationSchema={journalFormValSchema}
         onSubmit={async values => {
           if (journalData) {
-            await updateJournal({ values, slug: journalData?.service_slug });
+            await updateJournal(values);
           } else {
             await addJournal(values);
           }
+          toggleModal();
         }}
       >
         {({ isSubmitting, values, setFieldValue, resetForm }) => (
@@ -80,7 +89,7 @@ function AddEditJournalForm({ journalData = {} }) {
                   <FormikSelect
                     name="owner"
                     label="Owner"
-                    options={[]}
+                    options={ownersOptions}
                     placeholder="Select"
                     isRequired
                     isStack
@@ -91,7 +100,7 @@ function AddEditJournalForm({ journalData = {} }) {
               <Grid2 container rowSpacing={4} xs={12} md={6}>
                 <Grid2 xs={12}>
                   <FormikField
-                    name="company_description"
+                    name="description"
                     label="Company Description"
                     isRequired
                     type="textarea"
@@ -103,7 +112,7 @@ function AddEditJournalForm({ journalData = {} }) {
               </Grid2>
             </Grid2>
             <Box className="flex w-100 items-end justify-end gap-3" mt={3}>
-              <SubmitBtn label="Next" isLoading={isSubmitting} className="rounded-3xl" />
+              <SubmitBtn label={journalData ? 'Update' : 'Save'} isLoading={isSubmitting} className="rounded-3xl" />
             </Box>
           </Form>
         )}
@@ -114,6 +123,7 @@ function AddEditJournalForm({ journalData = {} }) {
 
 AddEditJournalForm.propTypes = {
   journalData: PropTypes.object,
+  toggleModal: PropTypes.func
 };
 
 export default AddEditJournalForm;

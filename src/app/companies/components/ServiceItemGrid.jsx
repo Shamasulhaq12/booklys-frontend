@@ -2,15 +2,28 @@
 import { Box, Button, Modal, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/navigation';
 import { formModalStyles } from '@/styles/mui/common/modal-styles';
 import ModalHeader from '@/app/common/components/ModalHeader';
 import ServiceDetail from './ServiceDetail';
+import { useLazyAuthorizedQuery } from '@/services/private/auth';
 
 function ServiceItemGrid({ title = '', price = '', timing = '', id = null }) {
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const toggleModal = () => {
-    setModalOpen(!isModalOpen);
+  const router = useRouter();
+
+  // Query
+  const [authorizeLoggedin] = useLazyAuthorizedQuery();
+
+  const toggleModal = async () => {
+    const response = await authorizeLoggedin();
+
+    if (!response?.error) {
+      setModalOpen(!isModalOpen);
+    } else {
+      router.push('/auth/signin');
+    }
   };
   return (
     <Box className=" hover:bg-sky-100 flex justify-between items-center transition-all duration-300 cursor-pointer p-3">

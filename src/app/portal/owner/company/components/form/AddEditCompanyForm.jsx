@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { Form, Formik } from 'formik';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -66,20 +66,8 @@ function AddEditCompanyForm({ companyData = {}, toggleAddModal }) {
           <Form>
             <Grid2 columnSpacing={4} container>
               <Grid2 container rowSpacing={4} xs={12} md={6}>
-                <Grid2 xs={12}>
+                <Stack spacing={1}>
                   <FormikField name="name" label="Name" isRequired type="text" placeholder="Name" isStack />
-                </Grid2>
-                <Grid2 xs={12}>
-                  <FormikField
-                    name="email"
-                    label="Email"
-                    isRequired
-                    type="text"
-                    placeholder="Email"
-                    isStack
-                  />
-                </Grid2>
-                <Grid2 xs={12}>
                   <FormikField
                     name="phone"
                     label="Phone"
@@ -88,20 +76,6 @@ function AddEditCompanyForm({ companyData = {}, toggleAddModal }) {
                     placeholder="phone"
                     isStack
                   />
-                </Grid2>
-                <Grid2 xs={12}>
-                  <FormikField
-                    name="address"
-                    label="Address"
-                    isRequired
-                    type="text"
-                    placeholder="Address"
-                    isStack
-                  />
-                </Grid2>
-              </Grid2>
-              <Grid2 container alignItems="start" rowSpacing={4} xs={12} md={6}>
-                <Grid2 xs={12}>
                   <FormikField
                     name="about_company"
                     label="About Company"
@@ -111,8 +85,26 @@ function AddEditCompanyForm({ companyData = {}, toggleAddModal }) {
                     rows={6}
                     isStack
                   />
-                </Grid2>
-                <Grid2 xs={12}>
+                </Stack>
+              </Grid2>
+              <Grid2 container alignItems="start" rowSpacing={4} xs={12} md={6}>
+                <Stack spacing={1}>
+                  <FormikField
+                    name="email"
+                    label="Email"
+                    isRequired
+                    type="text"
+                    placeholder="Email"
+                    isStack
+                  />
+                  <FormikField
+                    name="address"
+                    label="Address"
+                    isRequired
+                    type="text"
+                    placeholder="Address"
+                    isStack
+                  />
                   <FormikField
                     name="company_description"
                     label="Company Description"
@@ -122,13 +114,14 @@ function AddEditCompanyForm({ companyData = {}, toggleAddModal }) {
                     rows={6}
                     isStack
                   />
-                </Grid2>
-                <Grid2 xs={12}>
-                  <Typography variant="label">Images</Typography>
-                  <Box className="w-full">
-                    <FormikDropZone label="Images" name="company_images" placeholder="Files" multiple />
-                  </Box>
-                </Grid2>
+                </Stack>
+              </Grid2>
+
+              <Grid2 container rowSpacing={4} xs={12} md={12} mt={3}>
+                <Typography variant="label">Images</Typography>
+                <Box className="w-full">
+                  <FormikDropZone label="Images" name="company_images" placeholder="Files" multiple />
+                </Box>
               </Grid2>
             </Grid2>
             <Box className="flex w-100 items-end justify-end gap-3" mt={3}>
