@@ -12,15 +12,15 @@ import { placeholderImage } from '@/utilities/constants';
 function CompanyCards({ title = '', images = '', id = '', description = '', address = '' }) {
   return (
     <Link href={`/companies/${id}`}>
-      <Box className=" shadow-lg rounded-xl" sx={{ display: 'flex', gap: '20px', overflow: 'hidden' }}>
-        <Image src={images?.length > 0 ? images[0].src : dummyImage.src} alt="Logo" width={400} height={400} />
-        <Box>
+      <Box className=" shadow-md border rounded-xl my-5" sx={{ display: 'flex', gap: '20px', overflow: 'hidden' }}>
+        <Image src={images?.length > 0 ? images[0].image : dummyImage.src} alt="Logo" width={400} height={400} />
+        <Box className="py-3">
           <Typography variant="h5" className=" font-semibold">
             {title}
           </Typography>
           <Box sx={{ display: 'flex', gap: '20px', marginTop: '12px' }}>
             <Image
-              src={dummyImage.src}
+              src={images?.length > 0 ? images[0].image : dummyImage.src}
               className=" shadow-md rounded-xl"
               alt="dummyImage"
               width={100}

@@ -97,7 +97,7 @@ function BasicServiceTable({
                       <Typography variant="body1">{item?.service_timing} min</Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography variant="body1">{item?.service_description} min</Typography>
+                      <Typography variant="body1">{item?.service_description}</Typography>
                     </TableCell>
 
                     <TableCell>

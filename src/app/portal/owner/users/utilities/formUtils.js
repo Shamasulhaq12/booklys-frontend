@@ -57,6 +57,10 @@ export const settingFormInitVals = {
 
 export const settingFormValSchema = yup.object({
   designation: yup.string().required('Required'),
+  price_group: yup.string().required('Required'),
+  work_from: yup.string().required('Required'),
+  company: yup.string().required('Required'),
+  booking_interval_in_minutes: yup.string().required('Required'),
 });
 
 export const workScheduleFormArrayInitVals = {

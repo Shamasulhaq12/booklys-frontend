@@ -14,7 +14,7 @@ function SubCategoriesCards() {
   return (
     <Box className="-mx-1 flex flex-wrap gap-y-2 sm:-mx-2 lg:-mx-4">
       {data?.length > 0 ? (
-        data?.map(item => <SubCategoriesCard key={item?.id} title={item?.name} id={item?.id} />)
+        data?.map(item => <SubCategoriesCard key={item?.id} title={item?.name} id={item?.id} image={item?.image} />)
       ) : (
         <EmptyDataSection />
       )}

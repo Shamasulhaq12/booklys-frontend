@@ -88,7 +88,6 @@ function SettingForm() {
       >
         {({ isSubmitting, values, setFieldValue, resetForm, errors }) => (
           <Form>
-            {console.log(values.online_booking_available)}
             <Grid2 spacing={4} container>
               <Grid2 container spacing={4} xs={12} md={6}>
                 <Grid2 xs={12}>

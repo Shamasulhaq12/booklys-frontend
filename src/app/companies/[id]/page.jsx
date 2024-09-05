@@ -7,6 +7,7 @@ import React from 'react';
 import { Box, Breadcrumbs, Container, Divider, Rating, Typography } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import Image from 'next/image';
+import { Apartment, Email, MyLocation, Phone } from '@mui/icons-material';
 import { useGetPublicCompanyByIdQuery, useGetPublicServiceQuery } from '@/services/public/companyServices';
 import dummyImage from '@/assets/dummyImage.png';
 import { border } from '@/styles/common/colors';
@@ -15,13 +16,26 @@ import StaffItemGrid from '../components/StaffItemGrid';
 import AboutBusiness from '../components/AboutBusiness';
 import CompanyGallery from '../components/CompanyGallery';
 
+// eslint-disable-next-line react/prop-types
+function RenderContactInfo({ value, icon, classes = 'mt-1' }) {
+  return (
+
+    value && (
+    <Typography variant="body1" className={classes}>
+      {icon} {value}
+    </Typography>
+    )
+
+  );
+}
+
 function Company() {
   const { id: paramsId } = useParams();
 
   const { data: companyData } = useGetPublicCompanyByIdQuery(paramsId);
   const { data: serviceData } = useGetPublicServiceQuery({ company: paramsId });
 
-  console.log(' companyData?.company_staff ==> ', companyData?.company_staff);
+  console.log(' companyData?.company_staff ==> ', companyData?.company_staff, companyData);
 
   return (
     <Container variant="portal" sx={{ marginTop: '70px' }}>
@@ -103,7 +117,7 @@ function Company() {
         <Grid2 xs={12} md={5}>
           <Image
             src={
-              companyData?.company_images?.length > 0 ? companyData?.company_images[0].src : dummyImage.src
+              companyData?.company_images?.length > 0 ? companyData?.company_images[0].image : dummyImage.src
             }
             alt="company_images"
             width={400}
@@ -112,6 +126,10 @@ function Company() {
           <Typography variant="h6" className=" font-bold mt-3">
             Details and contact information
           </Typography>
+          <RenderContactInfo value={companyData?.name} icon={<Apartment fontSize="14px" />} classes=" font-bold mt-2" />
+          <RenderContactInfo value={companyData?.email} icon={<Email fontSize="13px" />} />
+          <RenderContactInfo value={companyData?.phone} icon={<Phone fontSize="13px" />} />
+          <RenderContactInfo value={companyData?.address} icon={<MyLocation fontSize="13px" />} />
         </Grid2>
       </Grid2>
     </Container>
