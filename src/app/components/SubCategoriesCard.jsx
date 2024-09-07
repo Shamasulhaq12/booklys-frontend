@@ -12,7 +12,7 @@ function SubCategoriesCard({ title = '', image = '', id = '' }) {
     <Box className=" h-full w-full p-1 sm:p-2 lg:p-4 basis-full sm:basis-1/2 md:basis-1/3 cursor-pointer">
       <Link href={`/search?category=${id}`}>
         <Box className="group relative">
-          <Image src={image || categoryImage} alt="Category Img" width={348} height={192} className=" rounded-md" />
+          <Image src={image || categoryImage} alt="Category Img" width={348} height={200} className="rounded-md min-h-[200px] max-h-[200px]" />
           <Box
             sx={{ backgroundColor: dark }}
             className=" absolute left-0 top-0 z-10 hidden h-full w-full flex-col justify-start gap-2 rounded-md bg-opacity-90 p-4 text-white group-hover:flex"

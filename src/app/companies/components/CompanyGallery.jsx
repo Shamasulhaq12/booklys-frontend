@@ -9,7 +9,7 @@ import dummyImage from '@/assets/dummyImage.png';
 function CompanyGallery({ images = [] }) {
   return (
     <Box className=" mt-6">
-      <Image src={images?.length > 0 ? images[0].src : dummyImage.src} alt="Logo" width={250} height={250} />
+      <Image src={images?.length > 0 ? images[0].image : dummyImage.src} alt="Logo" width={250} height={250} />
     </Box>
   );
 }

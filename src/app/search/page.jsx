@@ -16,8 +16,6 @@ function Search({ searchParams }) {
   });
   const loading = isLoading || isFetching;
 
-  console.log('data ==> ', data);
-
   return (
     <Container variant="portal" sx={{ marginTop: '140px' }}>
       <Box>

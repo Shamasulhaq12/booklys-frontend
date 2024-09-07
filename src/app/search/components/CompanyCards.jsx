@@ -13,7 +13,7 @@ function CompanyCards({ title = '', images = '', id = '', description = '', addr
   return (
     <Link href={`/companies/${id}`}>
       <Box className=" shadow-md border rounded-xl my-5" sx={{ display: 'flex', gap: '20px', overflow: 'hidden' }}>
-        <Image src={images?.length > 0 ? images[0].image : dummyImage.src} alt="Logo" width={400} height={400} />
+        <Image src={images?.length > 0 ? images[0].image : dummyImage.src} alt="Logo" width={348} height={200} className="min-h-[200px] max-h-[200px]" />
         <Box className="py-3">
           <Typography variant="h5" className=" font-semibold">
             {title}

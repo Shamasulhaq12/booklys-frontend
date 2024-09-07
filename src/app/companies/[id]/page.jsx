@@ -110,7 +110,7 @@ function Company() {
               Pictures
             </Typography>
             <Box className="mt-6">
-              <CompanyGallery />
+              <CompanyGallery images={companyData?.company_images?.length > 0 ? companyData?.company_images : []} />
             </Box>
           </Box>
         </Grid2>

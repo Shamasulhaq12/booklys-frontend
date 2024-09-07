@@ -16,6 +16,7 @@ import {
   CalendarTodayOutlined,
   CalendarMonth,
   BusinessOutlined,
+  MenuBook,
 } from '@mui/icons-material';
 
 import { v4 } from 'uuid';
@@ -28,6 +29,14 @@ export const sidebarCommonItemsData = [
     title: 'Calender',
     icon: <CalendarMonth />,
     order: 1,
+    permissions: [CLIENT, SUPPLIER],
+  },
+  {
+    id: v4(),
+    path: '/portal/owner/bookings',
+    title: 'Bookings',
+    icon: <MenuBook />,
+    order: 2,
     permissions: [CLIENT, SUPPLIER],
   },
   {
