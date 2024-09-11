@@ -130,7 +130,7 @@ function BookingCheckoutForm({ serviceId, date, time, companyId }) {
                     <Typography variant="h6" className=" font-bold">
                       Choose payment method
                     </Typography>
-                    <Box className=" w-full flex flex- gap-3">
+                    <Box className=" w-full flex flex-col gap-3">
                       <FormControl className=" w-full">
                         <RadioGroup
                           aria-labelledby="demo-controlled-radio-buttons-group"

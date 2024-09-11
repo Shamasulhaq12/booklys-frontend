@@ -18,7 +18,7 @@ function GridItemCard({ textAlign = 'center', alignItems = 'center' }) {
       <Target />
       <Typography variant="h6" className=" font-semibold">Get discovered</Typography>
       <Typography variant="body2">
-        Visible among over 2 million potential customers on both bokadirekt.se and our app.
+        Visible among over 2 million potential customers on both Booklyz.com and our app.
       </Typography>
     </Box>
   );

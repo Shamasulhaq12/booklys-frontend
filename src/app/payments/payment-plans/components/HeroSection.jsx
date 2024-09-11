@@ -13,13 +13,12 @@ function HeroSection() {
         height: '500px',
         backgroundColor: '#001a33',
         backgroundImage: 'linear-gradient(180deg,#001a33,#273746)',
-        marginTop: '70px',
       }}
     >
       <Box className=" flex justify-between items-center w-full max-w-[1024px]">
         <Box className=" max-w-[480px]">
           <Typography variant="body2" className=" text-white tracking-wide ">
-            BOKADIREKT BOKNINGSSYSTEM
+            BOOKLYZ BOKNING SYSTEM
           </Typography>
           <Typography variant="h1" className=" text-white normal-case my-2 font-semibold">
             Mer tid till din dröm
@@ -30,7 +29,7 @@ function HeroSection() {
           </Typography>
           <Box className=" mt-4 flex gap-4 items-stretch">
             <Button variant="contained" color="secondary" className=" bg-white font-normal py-3 text-sm w-44">
-              Prova Bokadirekt
+              Prova Booklyz
             </Button>
             <Button variant="outlined" color="secondary" className=" font-normal py-3 text-sm w-44">
               Kontakta mig

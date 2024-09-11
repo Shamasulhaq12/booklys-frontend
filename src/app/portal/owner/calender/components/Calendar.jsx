@@ -32,7 +32,7 @@ function Calendar({ small, events, onSelectEvent, selectedEvent, eventStyles }) 
       <ReactCalendar
         localizer={localizer}
         events={events}
-        views={['month', 'week', 'day']}
+        views={['month']}
         popup
         formats={formats}
         date={currentDate}

@@ -12,7 +12,8 @@ function LayoutWrapper({ children }) {
   const pathname = usePathname();
   const isAuthRoute = pathname.includes('/auth');
   const isPortalRoute = pathname.includes('/portal');
-  return isAuthRoute ? (
+  const isPaymentRoute = pathname.includes('/payments');
+  return isAuthRoute || isPaymentRoute ? (
     children
   ) : !isPortalRoute ? (
     <PublicLayoutWrapper>{children}</PublicLayoutWrapper>

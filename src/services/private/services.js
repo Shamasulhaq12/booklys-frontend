@@ -22,8 +22,11 @@ export const servicesApi = privateAPi.injectEndpoints({
     }),
 
     getServiceTimeSlots: build.query({
-      query: () => '/services/available-staff-slots/',
-      providesTags: ['GetServiceTimeSlots'],
+      query: params => ({
+        url: '/services/available-staff-slots/',
+        method: 'GET',
+        params,
+      }),
     }),
 
     addService: build.mutation({
@@ -70,7 +73,7 @@ export const {
   useGetPopularServiceQuery,
   useAddServiceMutation,
   useGetServiceByIdQuery,
-  useGetServiceTimeSlotsQuery,
+  useLazyGetServiceTimeSlotsQuery,
   useUpdateServiceMutation,
   useDeleteServiceMutation,
   useUpdateServiceStatusMutation,

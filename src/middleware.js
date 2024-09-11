@@ -10,9 +10,9 @@ export function middleware(request) {
   if (!isPublicRoute && !token) {
     return NextResponse.redirect(new URL('/auth/signin', request.url));
   }
-  // if (!isPublicRoute && token && !!paymentVerified?.value) {
-  //   return NextResponse.redirect(new URL('/payments/payment-plans', request.url));
-  // }
+  if (!isPublicRoute && token && !!paymentVerified?.value) {
+    return NextResponse.redirect(new URL('/payments/payment-plans', request.url));
+  }
   if (isPublicRoute && token) {
     return NextResponse.redirect(new URL('/portal', request.url));
   }

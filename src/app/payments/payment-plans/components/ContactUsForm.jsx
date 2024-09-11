@@ -38,7 +38,7 @@ function ContactUsForm() {
           Try for Free
         </Typography>
         <Typography variant="h3" className=" normal-case my-2 font-semibold text-center w-[450px]">
-          Vad våra användare säger om Bokadirekt
+          Vad våra användare säger om Booklyz
         </Typography>
         <Typography variant="body2" className=" my-8 text-center w-[450px]">
           Online booking system with everything you need to run a business on Sweden largest marketplace for

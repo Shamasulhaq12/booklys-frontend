@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 'use client';
 
 import React, { useState } from 'react';
@@ -17,7 +15,6 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useRouter } from 'next/navigation';
 import { Edit } from '@mui/icons-material';
 import moment from 'moment';
 import BookingTableHead from './BookingTableHead';
@@ -41,7 +38,6 @@ function BookingTable({
   onSelectRow,
   selected,
 }) {
-  const router = useRouter();
   const [isAddModalOpen, setAddModalOpen] = useState(false);
 
   const toggleAddModal = () => {

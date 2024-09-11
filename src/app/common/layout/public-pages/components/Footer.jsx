@@ -34,7 +34,7 @@ function Footer({ footerText = '', footerBgColor = '', textColor = '', btnBg = '
             <Grid item xs={12}>
               <Image src={logo?.src} alt="Logo" width={130} height={130} className=" mt-10" />
               <Typography variant="h6" className="mt-5 font-medium">
-                Hämta Bokadirekts app
+                Hämta Booklyz app
               </Typography>
               <Typography variant="body1" className="mt-2 font-normal">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -45,14 +45,14 @@ function Footer({ footerText = '', footerBgColor = '', textColor = '', btnBg = '
                 <Image src={AppStore?.src} alt="AppStore" width={120} height={50} />
               </Box>
               <Typography variant="h6" className="mt-14 font-medium">
-                Hämta Bokadirekts app
+                Hämta Booklyz app
               </Typography>
               <Typography variant="body1" className=" mt-2 font-normal">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
               </Typography>
               <Button variant="contained" className=" bg-dark mt-5">
-                Bokadirekt för företag
+                Booklyz för företag
               </Button>
             </Grid>
           </Grid>

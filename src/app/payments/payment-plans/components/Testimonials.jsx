@@ -7,7 +7,7 @@ function Testimonials() {
   return (
     <Box className=" bg-[#f0e6f2] flex flex-col justify-center items-center py-20 px-5">
       <Typography variant="h3" className=" normal-case my-2 font-semibold text-center">
-        Vad våra användare säger om Bokadirekt
+        Vad våra användare säger om Booklyz
       </Typography>
       <Grid2
         mt={3}

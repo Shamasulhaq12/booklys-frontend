@@ -31,7 +31,7 @@ function FeatureSection() {
                 for beauty and health. Save time and focus on what you are passionate about.
               </Typography>
               <Button variant="contained" color="primary" className="font-normal py-3 text-sm w-44">
-                Prova Bokadirekt
+                Prova Booklyz
               </Button>
             </Box>
             <Box className=" w-[350px] h-[350px] relative">
@@ -69,7 +69,7 @@ function FeatureSection() {
                 for beauty and health. Save time and focus on what you are passionate about.
               </Typography>
               <Button variant="contained" color="primary" className="font-normal py-3 text-sm w-44">
-                Prova Bokadirekt
+                Prova Booklyz
               </Button>
             </Box>
             <Box className=" w-[350px] h-[350px] relative">
